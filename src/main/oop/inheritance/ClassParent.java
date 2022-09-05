@@ -1,6 +1,6 @@
-package inheritance;
+package src.main.oop.inheritance;
 
-public class ClassSenior {
+public class ClassParent {
     public static void main(String[] args) {
         System.out.println("No instantiation for Class Junior: ");
         ClassJunior.methodJunior();

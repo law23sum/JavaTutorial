@@ -1,4 +1,4 @@
-package main.method;
+package src.main.classs.statement;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

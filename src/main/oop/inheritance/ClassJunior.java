@@ -1,6 +1,6 @@
-package inheritance;
+package src.main.oop.inheritance;
 
-public class ClassJunior extends ClassSenior {
+public class ClassJunior extends ClassParent {
     static void methodJunior() {
         System.out.println("output: " + IDENTIFIER);
     }

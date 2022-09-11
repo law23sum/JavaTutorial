@@ -5,14 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static jdk.jfr.consumer.EventStream.openFile;
-
 public class Exceptions {
     public static void main(String[] args) {
         divideNum(userNum());
 
         try {
-            openFile("src/main/file/file.txt");
+            openFile("src/file/file.txt");
         } catch (FileNotFoundException e) {
             System.out.println("Error: File Non-existent");
         }

@@ -1,4 +1,4 @@
-package src.main.oop.inheritance;
+package oop.inheritance;
 
 public class ClassParent {
     public static void main(String[] args) {

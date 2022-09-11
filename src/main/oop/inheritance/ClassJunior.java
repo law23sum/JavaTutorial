@@ -1,4 +1,4 @@
-package src.main.oop.inheritance;
+package oop.inheritance;
 
 public class ClassJunior extends ClassParent {
     static void methodJunior() {

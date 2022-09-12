@@ -10,15 +10,13 @@ public class Constructors {
         c.display();
     }
 
-    public Constructors() {
-        // default values assigned
+    public Constructors() {                                                                                             // default values assigned
         label = "label";
         digit = 55;
         decimal = 1.0F;
     }
 
-    public Constructors(String label) {
-        // assign unique values
+    public Constructors(String label) {                                                                                 // assign unique values
         this.label = label;
     }
 

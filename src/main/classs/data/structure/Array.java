@@ -13,7 +13,7 @@ public class Array {
         for (int item : numbers) {
             System.out.print("Count is: " + item + "\t\t");
         }
-        line();
+        space("line");
     }
 
     static void integerArray() {
@@ -23,7 +23,7 @@ public class Array {
         for (Integer value : valuesFixed) {
             System.out.print(value + " ");
         }
-        line();
+        space("line");
     }
 
     static void stringArray() {
@@ -33,22 +33,25 @@ public class Array {
         for (String coffee : copyTo) {
             System.out.print(coffee + " ");
         }
-        line();
+        space("line");
     }
 
     static void stringArrayMulti() {
         String[][] names = {{"Mr. ", "Mrs. ", "Ms. "}, {"Smith", "Jones"}};
         System.out.print(names[0][0] + names[1][0]);
-        tab();
+        space("tab");
         System.out.print(names[0][2] + names[1][1]);
     }
 
-    static void line() {
-        System.out.println();
-    }
-
-    static void tab() {
-        System.out.print("\t");
+    static void space(String type) {
+        switch (type) {
+            case "tab":
+                System.out.print("\t");
+                break;
+            case "line":
+                System.out.println();
+                break;
+        }
     }
 }
 

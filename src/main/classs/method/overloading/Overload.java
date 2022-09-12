@@ -8,8 +8,7 @@ public class Overload {
         load.overLoad(9);
     }
 
-    void overLoad() {
-        // same method name different args
+    void overLoad() {                                                                                                   // same method name different args
     }
 
     void overLoad(String label) {

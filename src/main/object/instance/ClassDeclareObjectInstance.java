@@ -1,8 +1,8 @@
-package src.main.object;
+package src.main.object.instance;
 
-public class ClassDeclaration {
+public class ClassDeclareObjectInstance {
     public static void main(String[] args){
-        ClassDeclaration ObjectInstance = new ClassDeclaration();
+        ClassDeclareObjectInstance ObjectInstance = new ClassDeclareObjectInstance();
         ObjectInstance.methodInstance();
     }
 
@@ -10,3 +10,4 @@ public class ClassDeclaration {
         System.out.println("method instance");
     }
 }
+

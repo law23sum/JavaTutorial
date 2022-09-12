@@ -7,17 +7,13 @@ public class AccessModifiers {
                 hidden();
         }
 
-        public static void accessible() {
-          // visible to public
+        public static void accessible() {                                                                               // project accessible
         }
 
-        protected static void restriction() {
-          // visible within package
+        protected static void restriction() {                                                                           // package accessible
         }
 
-        private static void hidden() {
-          // visible within class
+        private static void hidden() {                                                                                   // class accessible
         }
-
 }
 

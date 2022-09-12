@@ -1,4 +1,4 @@
-package src.main.subproject.bikes;
+package src.main.oop.inheritance.bikes;
 
 public class MountainBike extends Bicycle {  // subclass
     public MountainBike(int startHeight, int startCadence, int startSpeed, int startGear) { // constructor

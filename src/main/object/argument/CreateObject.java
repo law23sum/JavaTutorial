@@ -7,9 +7,9 @@ public class CreateObject {
     }
 
     private static void rectangleCreate2Move() {
-        Point originOne = new Point(23, 94);                                                                      // point object
-        Rectangle[] rect = new Rectangle[2];                                                                            // object array
-        rect[0] = new Rectangle(originOne, 100, 200);                                                            // object array index: element 0 & 1
+        Point originOne = new Point(23, 94);
+        Rectangle[] rect = new Rectangle[2];
+        rect[0] = new Rectangle(originOne, 100, 200);
         rect[1] = new Rectangle(50, 100);
 
         System.out.print("Width of rectangle0: " + rect[0].width + "\t");                                               // rect[0]: width, height, and area

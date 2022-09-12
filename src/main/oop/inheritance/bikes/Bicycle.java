@@ -1,4 +1,4 @@
-package src.main.subproject.bikes;
+package src.main.oop.inheritance.bikes;
 
 public class Bicycle {
     public static void main(String[] args) {

@@ -39,7 +39,7 @@ public class BinarySearch {
             }
             System.out.print("\t");
         } while (guess != answer);
-        return 0;
+        return -1;
     }
 
 }

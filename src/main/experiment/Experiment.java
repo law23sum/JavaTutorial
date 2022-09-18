@@ -5,8 +5,6 @@ public class Experiment {
         stringCompare();
     }
 
-
-
     protected static void stringCompare() {
         if (str1.length() != str2.length()) {
             strMatch = false;

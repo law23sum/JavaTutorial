@@ -1,3 +1,2 @@
-// https://docs.gradle.org/current/userguide/build_lifecycle.html#sec:settings_file
 rootProject.name = 'law23sum'
 include('lib')

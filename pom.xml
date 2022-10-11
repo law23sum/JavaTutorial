@@ -9,8 +9,8 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <mavenVersion>3.8.6</mavenVersion>
         <opencsvVersion>5.7.0</opencsvVersion>
         <junitVersion>4.13.2</junitVersion>
@@ -47,7 +47,6 @@
             <version>${kubernetesVersion}</version>
         </dependency>
     </dependencies>
-    <modules></modules>
     <build>
         <resources>
             <resource>
@@ -57,7 +56,6 @@
         </resources>
         <defaultGoal>install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
         <directory>${basedir}/target</directory>

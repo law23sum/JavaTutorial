@@ -1,4 +1,4 @@
-package core.datastructure;
+package core.datastructure.array;
 
 import library.Static;
 
@@ -15,8 +15,6 @@ public class InsertionSort {
          int j = i - 1;
          //DEBUG: System.out.print("hold-" + state + "   \t");
          while (j >= 0 && valueCalender[j] > state) {                                                                // compare each index pair then flip, else next index
-            //DEBUG: System.out.print("j" + j + " i" + i + "\t" + valueCalender[j]);
-            //DEBUG: System.out.print("-insert-" + valueCalender[j + 1] + "\t\t");
             valueCalender[j + 1] = valueCalender[j];                                                                // original index holds value per next index
             j = j - 1;
          }

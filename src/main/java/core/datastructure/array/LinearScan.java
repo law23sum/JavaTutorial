@@ -1,4 +1,4 @@
-package core.datastructure;
+package core.datastructure.array;
 
 import library.Static;
 

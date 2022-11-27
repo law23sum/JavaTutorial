@@ -1,11 +1,36 @@
 package packagee.classs.variable;
 
 public class Array {
-   public static void main(String[] args) {
-      intArray();
-      integerArray();
-      stringArray();
-      stringArrayMulti();
+   protected static void stringCompare() {
+      String str1 = "Hello Worlds";
+      String str2 = "Hello Friend";
+      Boolean strMatch = false;
+      if (str2.length() != str1.length()) {
+         strMatch = false;
+      } else {
+         int i = 0;
+         do {
+            System.out.print(str1.charAt(i) + "?" + str2.charAt(i) + "\t");
+            if (i == str1.length()) {
+               strMatch = true;
+            }
+            i++;
+         }
+         while (i < str1.length() && str1.charAt(i) == str2.charAt(i++));
+      }
+      System.out.print("\n" + strMatch);
+   }
+
+   static Integer[] arrayDouble(Integer[] array) {
+      int arrayLength = array.length;
+      int newArrayLength = array.length * 2;
+      Integer[] newArray = new Integer[newArrayLength];
+      int j = 0;
+      while (j < arrayLength) {
+         newArray[j] = array[j];
+         j++;
+      }
+      return newArray;
    }
 
    static void intArray() {
@@ -53,4 +78,14 @@ public class Array {
             break;
       }
    }
+
+   public static void main(String[] args) {
+      intArray();
+      integerArray();
+      stringArray();
+      stringArrayMulti();
+      Integer[] newArray = arrayDouble(new Integer[3]);
+      stringCompare();
+   }
+
 }

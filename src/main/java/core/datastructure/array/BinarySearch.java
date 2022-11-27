@@ -1,4 +1,4 @@
-package core.datastructure;
+package core.datastructure.array;
 
 public class BinarySearch {
    public static void main(String[] args) {

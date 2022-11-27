@@ -3,10 +3,6 @@ package core.datastructure.linkedlist;
 import static core.datastructure.linkedlist.Nodes.*;
 
 public class LinkedList {
-   static void doubleLinkedList() {
-
-   }
-
    static void singleLinkedList() {
       insertTail(-10);
       insertTail(0);
@@ -26,5 +22,6 @@ public class LinkedList {
 
    public static void main(String[] args) {
       singleLinkedList();
+
    }
 }

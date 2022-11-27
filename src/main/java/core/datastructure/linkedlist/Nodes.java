@@ -2,6 +2,17 @@ package core.datastructure.linkedlist;
 
 import org.w3c.dom.Node;
 
+class node {
+   node(int data) {
+      this.data = data;
+      this.next = null;
+   }
+
+   node next;   // pointerToNextNode
+   int data;    // NodeValue
+   Integer datas;
+}
+
 public class Nodes {
    static void printLinkedList() {
       node current = head;
@@ -22,18 +33,17 @@ public class Nodes {
    }
 
    static void deleteNode(int key, Integer value) {
-         node current = head, previous = null;
-         if (current != null && current.data == key) {
-            head = current.next;                       // pointer update to head node
-            return;
-         }
-         while (current != null && current.data != key) {
-            previous = current;
-            current = current.next;
-         }
-         if (current == null)
-            return;
-         previous.next = current.next;                // unlinks node from linked list
+      node current = head, previous = null;
+      if (current != null && current.data == key) {
+         head = current.next;                       // pointer update to head node
+         return;
+      }
+      while (current != null && current.data != key) {
+         previous = current;
+         current = current.next;
+      }
+      if (current == null) return;
+      previous.next = current.next;                // unlinks node from linked list
    }
 
    static void insertTail(Integer value) {
@@ -70,22 +80,13 @@ public class Nodes {
       printNode(previous.data);
    }
 
-   public static void insertHead(Integer value) {
-      node n = new node(value);
-      n.next = head;
-      head = n;
+   public static void insertHead(int value) {
+      node previous = new node(value);
+      previous.next = head;          // point pointer from head node to next node
+      head = previous;
       printNode(head.data);
    }
 
-   static node head = null;                                                       //declare null linked list
-}
-
-class node {
-   node(int value) {
-      data = value;
-      next = null;
-   }
-
-   node next; // pointer
-   int data;  // value
+   static node tail = null;
+   static node head = null;                                                    //declare null linked list
 }

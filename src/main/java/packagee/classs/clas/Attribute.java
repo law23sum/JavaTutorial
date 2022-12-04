@@ -1,6 +1,64 @@
-package packagee.classs.variable;
+package packagee.classs.clas;
 
-public class Array {
+public class Attribute {
+   public Attribute() { }
+
+   {
+      UNCHANGEABLE = 42;
+      TRANSCENDENT = Math.sqrt(2.03d);
+      digit = 50;
+      decVal = 26;
+      hexVal = 0x1a;
+      binVal = 0b11010;
+      d1 = 123.4;
+      d2 = 1.234e2;
+      f1 = 123.4f;
+   }
+
+   String exchange;
+   Integer UNCHANGEABLE;
+   Double TRANSCENDENT;
+   int digit;
+   boolean innerStatus;
+   char statute;
+   float repeatable;
+   int value;
+   Double calculation;
+   int decVal;
+   int hexVal;
+   int binVal;
+   double d1;
+   double d2;
+   float f1;
+   long creditCardNumber = 1234_5678_9012_3456L;
+   long socialSecurityNumber = 999_99_9999L;
+   float pi = 3.14_15F;
+   long hexBytes = 0xFF_EC_DE_5E;
+   long hexWords = 0xCAFE_BABE;
+   long maxLong = 0x7fff_ffff_ffff_ffffL;
+   byte nybbles = 0b0010_0101;
+   long bytes = 0b11010010_01101001_10010100_10010010;
+
+   void primitiveTypes() {
+      innerStatus = true;
+      statute = '\u0000';
+      repeatable = 1.0f / 3.0f;
+      value = (int) (digit * repeatable);
+   }
+
+   void wrapperClasses() {
+      calculation = Double.valueOf((((UNCHANGEABLE / (1 - UNCHANGEABLE)) - (1 / (1 + TRANSCENDENT.intValue()))) * digit));
+
+      exchange = "interact";
+   }
+
+   static void Types() {
+      Attribute Type = new Attribute();
+      Type.primitiveTypes();
+      Type.wrapperClasses();
+      System.out.println(Type.calculation);
+   }
+
    protected static void stringCompare() {
       String str1 = "Hello Worlds";
       String str2 = "Hello Friend";
@@ -15,8 +73,7 @@ public class Array {
                strMatch = true;
             }
             i++;
-         }
-         while (i < str1.length() && str1.charAt(i) == str2.charAt(i++));
+         } while (i < str1.length() && str1.charAt(i) == str2.charAt(i++));
       }
       System.out.print("\n" + strMatch);
    }
@@ -52,8 +109,7 @@ public class Array {
    }
 
    static void stringArray() {
-      String[] copyFrom = {"Affogato", "Americano", "Cappuccino", "Corretto", "Cortado",
-              "Doppio", "Espresso"}, copyTo = new String[8];
+      String[] copyFrom = {"Affogato", "Americano", "Cappuccino", "Corretto", "Cortado", "Doppio", "Espresso"}, copyTo = new String[8];
       System.arraycopy(copyFrom, 0, copyTo, 0, 7);
       for (String coffee : copyTo) {
          System.out.print(coffee + " ");
@@ -79,7 +135,7 @@ public class Array {
       }
    }
 
-   public static void main(String[] args) {
+   static void Array() {
       intArray();
       integerArray();
       stringArray();
@@ -88,4 +144,8 @@ public class Array {
       stringCompare();
    }
 
+   public static void main(String[] args) {
+      Array();
+      Types();
+   }
 }

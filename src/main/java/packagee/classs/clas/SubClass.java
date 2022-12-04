@@ -1,8 +1,13 @@
 package packagee.classs.clas;
 
-import packagee.classs.clas.implement.SuperClass;
+public class SubClass extends SuperClass { //child class
+    public SubClass(){ }
 
-public class Instance {
+    @Override
+    public void decrementState() {
+        super.decrementState();
+    }
+
     public static void main(String[] args){
         SuperClass object1 = new SuperClass();
         object1.setState(1);
@@ -10,4 +15,5 @@ public class Instance {
         object1.changeState(2);
         object1.setBehaviour('b');
     }
+
 }

@@ -1,4 +1,6 @@
-package packagee.classs.clas;
+package packagee.classs.clas.iinterface.implement;
+
+import packagee.classs.clas.iinterface.Interface;
 
 public class SuperClass implements Interface { // parent class
     public void setState(int newState) {
@@ -23,7 +25,6 @@ public class SuperClass implements Interface { // parent class
         this.state--;
     }
 
-    @Override
     public void changeBehaviour(char newBehavior) {
         this.behavior = String.valueOf(this.behavior).charAt(0);
     }

@@ -5,21 +5,21 @@ enum PatternCategory {
    DESIGN,
 }
 
-public class Pattern {
-    PatternCategory PatternGenerate;
+public class Pattern implements PatternType {
+PatternCategory PatternGenerate;
 
-   public Pattern() {
-   }
+public Pattern() {
+}
 
-   void types(PatternCategory Category) {
-      this.PatternGenerate = PatternCategory.DESIGN;
-   }
+public void types(PatternCategory Category) {
+   this.PatternGenerate = PatternCategory.DESIGN;
+}
 
-   static {
-      System.out.print("each pattern's design");
-   }
+static {
+   System.out.print("each pattern's design");
+}
 
-   void createPattern() {     // f
-      new Pattern();
-   }
+public void createPattern() {     // f
+   new Pattern();
+}
 }

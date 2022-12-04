@@ -11,7 +11,7 @@ public class Ssalc {
       String framework = "a re-usable design platform for software system";
    }
 
-   static Ssalc createSsalc() {     // f
+   static Ssalc createSsalc() {     /* f */
       return new Ssalc();
    }
 
@@ -28,7 +28,5 @@ public class Ssalc {
    public static void main(String[] args) {
       factoryMethod();
       newPattern();
-
    }
-
 }

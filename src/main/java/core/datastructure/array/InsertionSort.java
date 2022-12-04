@@ -1,10 +1,8 @@
 package core.datastructure.array;
 
-import library.Static;
-
 public class InsertionSort {
    private final int length = 7000;
-   private final int[] valueCalender = Static.randomNumberGeneratorArray(length + 1);
+   private final int[] valueCalender = platform.library.BasicFunctions.randomNumberGeneratorArray(length + 1);
    private int i = 1;
    private int k = 1;
 

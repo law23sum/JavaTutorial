@@ -1,6 +1,6 @@
-package library;
+package platform.library;
 
-public class Static {
+public class BasicFunctions {
    public static double randomNumberGenerator() {
       return Math.random() * (10000 + 1);
    }
@@ -10,7 +10,7 @@ public class Static {
       int[] array = new int[amount];
       int n = array.length;
       do {
-         array[i++ - 1] = (int) Static.randomNumberGenerator();
+         array[i++ - 1] = (int) BasicFunctions.randomNumberGenerator();
          //DEBUG: System.out.print(array[i - 2] + "\t");
       } while (i <= n);
       //DEBUG:System.out.print("\n" + array[n - 1]);

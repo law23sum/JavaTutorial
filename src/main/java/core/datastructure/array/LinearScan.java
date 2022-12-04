@@ -1,11 +1,9 @@
 package core.datastructure.array;
 
-import library.Static;
-
 // thorough yet inefficient
 public class LinearScan {                                                                                             // search a sorted list
    private static final int target = 23;
-   private static final int[] lockerNumbers = Static.randomNumberGeneratorArray(target);
+   private static final int[] lockerNumbers = platform.library.BasicFunctions.randomNumberGeneratorArray(target);
    private static int i = 0;
 
    public static void main(String[] args) {

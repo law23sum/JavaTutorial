@@ -2,21 +2,22 @@
 package packagee.classs.clas.iinterfaceabstract;
 
 // cannot have constructors
-public interface Interface {                  // contain only constants, method signatures, default methods, static methods, and nested types
+public interface Interface {                           // contain only constants, method signatures, default methods, static methods, and nested types
 
-    final static String WORD = "Aye";        // contain only constants
+    final static String WORD = "Aye";                // contain only constants
 
-    void incrementState();              //method signatures
+    void incrementState();                             //method signatures, abstract method is a method without a body
 
-    void decrementState();              //method signatures
+
+    void decrementState();                            // Polymorphism defines at interface implemented by classes interfacing to it
 
     void displayCurrentState();
 
-    void change(String type, int state);     //method signatures, abstract method is a method without a body
+    void change(String type, int state);
 
-    void incrementEvent();              //method signatures
+    void incrementEvent();
 
-    void decrementEvent();              //method signatures
+    void decrementEvent();
 
     void displayCurrentEvent();
 

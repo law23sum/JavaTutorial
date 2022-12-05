@@ -1,21 +1,23 @@
+// Java Project
+// Java Topic (The Collections Framework)
+// Java Notes
+//
+//           Iterator Interface shown on usage. Iterator, & Collections are interfaces while ArrayList are its
+//           implementations, hence usage of iterators methods.
 package platform.framework;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Collectiion {
-public ArrayList<String> IteratorUsage() {
+
+public static void IteratorUsage() {
    ArrayList<String> cars = new ArrayList<>();
    cars.add("Adui");
    cars.add("BMW");
    cars.add("Toyota");
-   return cars;
-}
-
-public static void main(String[] args) {
    Collectiion iterate = new Collectiion();
-   ArrayList<String> arr = iterate.IteratorUsage();
-   Iterator<String> it = arr.iterator();
+   Iterator<String> it = cars.iterator();
    System.out.println(it.hasNext());
    String temp = "Toyota";
    while (it.hasNext()) {
@@ -23,5 +25,9 @@ public static void main(String[] args) {
          it.remove();
       } else System.out.println(it.next());
    }
+}
+
+public static void main(String[] args) {
+ IteratorUsage();
 }
 }

@@ -6,10 +6,12 @@ public class BaseClass extends SubClass {
     public static void main(String[] args) {
         BaseClass object1 = new BaseClass();
         object1.setNewState(21);                             // encapsulation implemented
-        int tempState = object1.getNewState();             // encapsulation implemented
+        int tempState;                                       // encapsulation implemented
+        tempState = object1.getNewState();
         object1.setNewEvent(15);                             // encapsulation implemented
         object1.incrementEvent();
-        int tempEvent = object1.getNewEvent();              // encapsulation implemented
+        int tempEvent;                                       // encapsulation implemented
+        tempEvent = object1.getNewEvent();
         object1.change("Event", 1);
         object1.incrementState();
         object1.change( 2);

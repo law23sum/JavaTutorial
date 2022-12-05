@@ -32,7 +32,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junitVersion}</version>
-            <scope>test</scope>
             <type>jar</type>
             <optional>true</optional>
         </dependency>

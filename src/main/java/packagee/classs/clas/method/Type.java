@@ -14,8 +14,11 @@
 package packagee.classs.clas.method;
 
 import org.junit.Test;
+import packagee.classs.clas.method.Type.Overload.SetterGetter.Constructors.AccessModifiers;
 
 import java.util.concurrent.ExecutionException;
+
+import static packagee.classs.clas.method.Type.Overload.SetterGetter.*;
 
 
 public class Type {
@@ -156,18 +159,18 @@ public static class Overload {
    public void main(String[] args) {
       Overload load = new Overload();
       Overload.SetterGetter setget = new SetterGetter();
-      Overload.SetterGetter.Constructors construct = new Type.Overload.SetterGetter.Constructors();
-      Overload.SetterGetter.Constructors.AnnotationTypes annotate = new Type.Overload.SetterGetter.Constructors.AnnotationTypes(Type.Overload.SetterGetter.objectOne);
-      Overload.SetterGetter.Staticc staticc = new SetterGetter.Staticc();
-      Overload.SetterGetter.Constructors.AccessModifiers modify = new Type.Overload.SetterGetter.Constructors.AccessModifiers();
+      Constructors construct = new Constructors();
+      Constructors.AnnotationTypes annotate = new Constructors.AnnotationTypes(objectOne);
+      Staticc staticc = new Staticc();
+      AccessModifiers modify = new AccessModifiers();
       setget.setValue(100);
       System.out.println("\n\t\t" + setget.getValue());
       load.overLoad();
       load.overLoad(9);
       staticc.nonStaticMethod();
-      Overload.SetterGetter.Staticc.staticMethod();
+      Staticc.staticMethod();
       annotate.useDeprecatedMethod();
-      for (String type : modify.accessModifyType) {
+      for (String type : AccessModifiers.accessModifyType) {
          System.out.println(type + "\n");
       }
       setget.functionalInterface();

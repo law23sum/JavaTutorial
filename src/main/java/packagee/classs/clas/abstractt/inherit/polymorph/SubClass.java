@@ -1,7 +1,7 @@
-package packagee.classs.clas.abstractt.implement.inherit.polymorph;
+package packagee.classs.clas.abstractt.inherit.polymorph;
 
 
-import packagee.classs.clas.abstractt.implement.inherit.SuperClass;
+import packagee.classs.clas.abstractt.inherit.SuperClass;
 
 public abstract class SubClass extends SuperClass {          //child class
     private int newState = 0;

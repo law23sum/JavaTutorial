@@ -24,10 +24,10 @@
 //                              multiple inheritance in case of class not possible.
 //                              work around by using interface it can achieve multiple inheritance
 
-package packagee.classs.clas.iinterfaceabstract.implement;
+package packagee.classs.clas.abstractt.implement;
 
-import packagee.classs.clas.iinterfaceabstract.Interface;
-import packagee.classs.clas.iinterfaceabstract.implement.inherit.polymorph.encapsulate.BaseClass;
+import packagee.classs.clas.abstractt.Interface;
+import packagee.classs.clas.abstractt.implement.inherit.polymorph.encapsulate.BaseClass;
 
 
 public abstract class RootClass implements Interface { //  Highest Order Super Class
@@ -35,6 +35,6 @@ public abstract class RootClass implements Interface { //  Highest Order Super C
     public static void main(String[] args) {
         BaseClass obj = new BaseClass();
         Class cls = obj.getClass().getSuperclass();
-        System.out.println(cls.getName());
+        System.out.println("Package Name " + cls.getName());
     }
 }

@@ -1,4 +1,4 @@
-package packagee.classs.clas.iinterfaceabstract.implement.inherit.polymorph;
+package packagee.classs.clas.abstractt.implement.inherit.polymorph;
 
 import junit.framework.TestCase;
 

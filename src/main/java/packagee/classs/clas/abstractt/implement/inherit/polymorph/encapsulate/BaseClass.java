@@ -1,6 +1,6 @@
-package packagee.classs.clas.iinterfaceabstract.implement.inherit.polymorph.encapsulate;
+package packagee.classs.clas.abstractt.implement.inherit.polymorph.encapsulate;
 
-import packagee.classs.clas.iinterfaceabstract.implement.inherit.polymorph.SubClass;
+import packagee.classs.clas.abstractt.implement.inherit.polymorph.SubClass;
 
 public class BaseClass extends SubClass {
     public static void main(String[] args) {

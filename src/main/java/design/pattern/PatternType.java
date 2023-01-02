@@ -1,4 +1,4 @@
-package core.pattern;
+package design.pattern;
 
 public interface PatternType {
 

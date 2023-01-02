@@ -1,4 +1,4 @@
-package core.pattern;
+package design.catalog;
 
 public class Coupling {
    public Coupling() {

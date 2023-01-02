@@ -1,4 +1,4 @@
-package core.pattern;
+package design.pattern;
 // Java code to demonstrate method chaining
 
 final class ExampleBuilder {

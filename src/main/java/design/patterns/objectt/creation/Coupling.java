@@ -1,4 +1,4 @@
-package design.catalog;
+package design.patterns.objectt.creation;
 
 public class Coupling {
    public Coupling() {

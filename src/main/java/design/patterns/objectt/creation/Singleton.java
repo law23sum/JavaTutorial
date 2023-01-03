@@ -1,4 +1,4 @@
-package design.basic;
+package design.patterns.objectt.creation;
 
 public class Singleton {
     private static Singleton instance;

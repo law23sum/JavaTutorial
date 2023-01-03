@@ -1,4 +1,4 @@
-package design.pattern;
+package design.catalog.methodchaining;
 
 import java.util.regex.Pattern;
 

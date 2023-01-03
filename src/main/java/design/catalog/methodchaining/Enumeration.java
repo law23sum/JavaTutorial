@@ -1,4 +1,6 @@
-package design.pattern;
+package design.catalog.methodchaining;
+
+import design.patterns.Patterns;
 
 import java.awt.*;
 

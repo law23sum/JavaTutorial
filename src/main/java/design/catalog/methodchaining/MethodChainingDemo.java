@@ -1,4 +1,4 @@
-package design.pattern;
+package design.catalog.methodchaining;
 
 // Driver class
 public class MethodChainingDemo {

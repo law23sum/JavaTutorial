@@ -1,4 +1,4 @@
-package design.pattern;
+package design.patterns;
 
 public class Ssalc {
    String a;

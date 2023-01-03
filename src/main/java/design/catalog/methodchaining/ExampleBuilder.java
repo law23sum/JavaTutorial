@@ -1,4 +1,4 @@
-package design.pattern;
+package design.catalog.methodchaining;
 // Java code to demonstrate method chaining
 
 final class ExampleBuilder {

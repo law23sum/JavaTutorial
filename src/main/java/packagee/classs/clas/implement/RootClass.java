@@ -23,9 +23,7 @@
 //                              class can implement more than one interface
 //                              multiple inheritance in case of class not possible.
 //                              work around by using interface it can achieve multiple inheritance
-
 package packagee.classs.clas.implement;
-
 import packagee.classs.clas.abstractt.Interface;
 import packagee.classs.clas.implement.encapsulate.BaseClass;
 

@@ -25,14 +25,3 @@ public class PointerToNode {
       headInsertion(0);
    }
 }
-
-class Node {
-   Node(int dataNode) {
-      this.nodeData = dataNode;
-      this.next = null;
-   }
-
-   Node next;
-   Node prior;
-   int nodeData;
-}

@@ -6,7 +6,7 @@
 //
 //
 //
-package packagee.classs.clas.method;
+package packagee.classs.method;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

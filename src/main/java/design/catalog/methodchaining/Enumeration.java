@@ -1,11 +1,8 @@
 package design.catalog.methodchaining;
 
-import design.patterns.Patterns;
-
 import java.awt.*;
 
 public class Enumeration {
-    Patterns Pattern;
 
    public Enumeration(java.util.regex.Pattern pattern) {
    }

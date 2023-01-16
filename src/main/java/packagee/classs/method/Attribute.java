@@ -1,4 +1,4 @@
-package packagee.classs.clas.method;
+package packagee.classs.method;
 
 public class Attribute {
    public Attribute() { }

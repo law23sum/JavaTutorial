@@ -8,7 +8,7 @@ import com.tutorial.packagee.classs.method.Type;
 import com.tutorial.packagee.classs.clas.implement.RootClass;
 import com.tutorial.packagee.classs.method.Attribute;
 import com.tutorial.packagee.classs.method.ConditionsExceptionsLoopsStatements;
-
+import com.tutorial.packagee.classs.type.WrapperClass;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -27,6 +27,7 @@ public class Runner {
                 System.out.println("5. Abstract Class & Interface Demo (RootClass)");
                 System.out.println("6. Attributes & Arrays Demo (Attribute)");
                 System.out.println("7. Conditions / Exceptions / Loops Demo");
+                System.out.println("8. Wrapper Class / String Demo");
                 System.out.println("0. Exit");
                 System.out.print("> ");
 
@@ -63,6 +64,10 @@ public class Runner {
                     }
                     case 7: {
                         ConditionsExceptionsLoopsStatements.runDemo();
+                        break;
+                    }
+                    case 8: {
+                        WrapperClass.runDemo();
                         break;
                     }
                     case 0: {

@@ -1,21 +1,2 @@
-plugins {
-    id 'application'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-application {
-    mainClass = 'com.example.app.Runner'
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    // your deps here
-}
+rootProject.name = 'law23sum'
+include('lib')

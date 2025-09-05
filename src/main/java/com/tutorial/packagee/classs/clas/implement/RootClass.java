@@ -24,14 +24,16 @@
 //                              multiple inheritance in case of class not possible.
 //                              work around by using interface it can achieve multiple inheritance
 package com.tutorial.packagee.classs.clas.implement;
-import packagee.classs.clas.abstractt.Interface;
-import packagee.classs.clas.implement.encapsulate.BaseClass;
 
-public abstract class RootClass implements Interface { //  Highest Order Super Class
+import com.tutorial.packagee.classs.clas.abstractt.Interface;
+import com.tutorial.packagee.classs.clas.implement.encapsulate.BaseClass;
 
-    public static void main(String[] args) {
+public abstract class RootClass implements Interface { // Highest Order Super Class
+
+    // Demo entry point (no instance of RootClass required)
+    public static void runDemo() {
         BaseClass obj = new BaseClass();
-        Class cls = obj.getClass().getSuperclass();
+        Class<?> cls = obj.getClass().getSuperclass(); // show immediate superclass of BaseClass
         System.out.println("Package Name " + cls.getName());
     }
 }

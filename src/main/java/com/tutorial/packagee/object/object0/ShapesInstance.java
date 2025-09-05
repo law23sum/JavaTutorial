@@ -1,8 +1,8 @@
 package com.tutorial.packagee.object.object0;
 
-import packagee.object.object0.shapes.Circle;
-import packagee.object.object0.shapes.Point;
-import packagee.object.object0.shapes.Rectangle;
+import com.tutorial.packagee.object.object0.shapes.Circle;
+import com.tutorial.packagee.object.object0.shapes.Point;
+import com.tutorial.packagee.object.object0.shapes.Rectangle;
 
 public class ShapesInstance {
     private static void rectangleCreate2Move() {

@@ -1,8 +1,10 @@
 package com.tutorial.core.datastructure.array;
 
+import com.tutorial.platform.library.BasicFunctions;
+
 public class InsertionSort {
    private final int length = 7000;
-   private final int[] valueCalender = platform.library.BasicFunctions.randomNumberGeneratorArray(length + 1);
+   private final int[] valueCalender = BasicFunctions.randomNumberGeneratorArray(length + 1);
    private int i = 1;
    private int k = 1;
 

@@ -1,7 +1,6 @@
 package com.tutorial.core.datastructure.array;
 
 public class BinarySearch {
-
    public static int execute(int[] sortedArray) {
       int random = (int) (Math.random() * (7000 + 1));
       int answer = sortedArray[random];

@@ -1,7 +1,7 @@
 package com.tutorial.packagee.object.object1;
 
-import packagee.object.object1.deck.Card;
-import packagee.object.object1.deck.Deck;
+import com.tutorial.packagee.object.object1.deck.Card;
+import com.tutorial.packagee.object.object1.deck.Deck;
 
 public class DeckOfCardsInstance0 {
     public static void main(String[] args) {

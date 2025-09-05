@@ -1,25 +1,20 @@
-// Static method is a method that belongs to the class, not to the instance of the class
-//               access without creating the object of the class
-//               early binding prevents  Static methods to be overridden
-// NonStatic method
-//               Non-Static methods can be overridden because of runtime binding
-// Constructors
-//               initializes an object & constructors have no explicit return type
-//               Types : no-arg constructor, and parameterized
-//               Constructor Overloading, different data types + sequence of parameters
-// ComputableFuture
-//               implements the Future interface; means can be use for future implementation but with additional logic
-//               static methods unAsync and supplyAsync allow us to create a ComputableFuture instance out of Runnable and Supplier functional types
-
 package com.tutorial.packagee.classs.method;
 
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
 import java.util.concurrent.ExecutionException;
 
-import static packagee.classs.method.Type.Overload.SetterGetter.objectOne;
+import static com.tutorial.packagee.classs.method.Type.Overload.SetterGetter.objectOne;
 
+// Notes:
+// - Static method: belongs to the class, accessed without an instance; early binding (cannot be overridden).
+// - Non-static method: instance-bound; can be overridden via runtime binding.
+// - Constructors: initialize objects; no explicit return type. Overloading varies parameter types/order.
+// - CompletableFuture: implements Future with extra composition tools; runAsync/supplyAsync create tasks from Runnable/Supplier.
 
+@RunWith(Enclosed.class)
 public class Type {
     static {
         System.out.println("\n\t\t to initialize");
@@ -37,6 +32,8 @@ public class Type {
         public static class SetterGetter {
             static Constructors.AnnotationTypes objectOne;
 
+            private int value;
+
             public void setValue(int num) {
                 value = num;
             }
@@ -45,16 +42,14 @@ public class Type {
                 return value;
             }
 
-            private int value;
-
             public static class Staticc {
                 static {
-                    System.out.println("this is an static initialization block");
+                    System.out.println("this is a static initialization block");
                     staticMethod();
                 }
 
                 {
-                    System.out.println("this is a initialization block");
+                    System.out.println("this is an instance initialization block");
                     nonStaticMethod();
                 }
 
@@ -68,11 +63,11 @@ public class Type {
             }
 
             public static class Constructors {
-                public Constructors() {                                                                                             // default values assigned
+                public Constructors() {                                      // default values assigned
                     this("label", 0, 1.0F);
                 }
 
-                public Constructors(String label) {                                                                                 // assign unique values
+                public Constructors(String label) {                          // assign unique values
                     this.label = label;
                 }
 
@@ -95,87 +90,99 @@ public class Type {
                         this.objectOne = objectOne;
                     }
 
-                    // use a deprecated method and tell
-                    // compiler not to generate a warning
                     void useDeprecatedMethod() {
-                        // deprecation warning
-                        // - suppressed
+                        // deprecation warning suppressed by @Deprecated on the method definition
                         deprecatedMethod();
                     }
 
-                    // Javadoc comment follow
-
-                    /**
-                     * @deprecated explanation of why it was deprecated
-                     */
+                    /** @deprecated explanation of why it was deprecated */
                     @Deprecated
                     static void deprecatedMethod() {
+                        // intentionally empty
                     }
 
                     AnnotationTypes objectOne;
                 }
 
                 public static class AccessModifiers {
+                    public static String[] accessModifyType = new String[4];
+
                     public static void world() {
                         accessModifyType = new String[]{"public"};
                     }
 
-                    static void subClass() {                                                                           // package accessible
+                    static void subClass() {                                  // package-accessible
                         accessModifyType = new String[]{"public", "protected"};
                     }
 
-                    protected static void packagee() {                                                                                   // class accessible
+                    protected static void packagee() {                         // subclass-accessible (and package)
                         accessModifyType = new String[]{"public", "protected", "none"};
                     }
 
                     static void classs() {
                         accessModifyType = new String[]{"public", "protected", "none", "private"};
                     }
-
-                    public static String[] accessModifyType = new String[4];
                 }
             }
 
             void functionalInterface() {
-                // Implementing Runnable using old way
+                // Implementing Runnable using lambda
                 Runnable runnable = () -> System.out.println("Old Thread name : " + Thread.currentThread().getName());
                 Thread thread1 = new Thread(runnable);
-                Runnable runnable_new = () -> {  // Implementing Runnable using Lambda Expression
-                    System.out.println("New Thread name : " + Thread.currentThread().getName());
-                };
-                Thread thread_new = new Thread(runnable_new);
-                thread1.start();          // Start Threads
-                thread_new.start();
+
+                Runnable runnableNew = () -> System.out.println("New Thread name : " + Thread.currentThread().getName());
+                Thread threadNew = new Thread(runnableNew);
+
+                thread1.start();
+                threadNew.start();
             }
         }
 
         @Test
         public void runAsync() throws InterruptedException, ExecutionException {
-            java.util.concurrent.CompletableFuture<Void> future = java.util.concurrent.CompletableFuture.runAsync(() -> System.out.println("runAsync method doesn not return any value"));
+            java.util.concurrent.CompletableFuture<Void> future =
+                    java.util.concurrent.CompletableFuture.runAsync(
+                            () -> System.out.println("runAsync method does not return any value"));
             System.out.println(future.get());
         }
 
-        public void main(String[] args) {
+        // ===== Demo entry point for Runner =====
+        public static void runDemo() {
             Overload load = new Overload();
-            Overload.SetterGetter setget = new SetterGetter();
+            SetterGetter setget = new SetterGetter();
             SetterGetter.Constructors construct = new SetterGetter.Constructors();
-            SetterGetter.Constructors.AnnotationTypes annotate = new SetterGetter.Constructors.AnnotationTypes(objectOne);
+            SetterGetter.Constructors.AnnotationTypes annotate =
+                    new SetterGetter.Constructors.AnnotationTypes(objectOne);
             SetterGetter.Staticc staticc = new SetterGetter.Staticc();
-            SetterGetter.Constructors.AccessModifiers modify = new SetterGetter.Constructors.AccessModifiers();
+            SetterGetter.Constructors.AccessModifiers modify =
+                    new SetterGetter.Constructors.AccessModifiers();
+
             setget.setValue(100);
-            System.out.println("\n\t\t" + setget.getValue());
+            System.out.println("\n\t\tvalue = " + setget.getValue());
+
             load.overLoad();
             load.overLoad(9);
+
+            // instance vs static
             staticc.nonStaticMethod();
             SetterGetter.Staticc.staticMethod();
+
+            // deprecated usage via wrapper
             annotate.useDeprecatedMethod();
+
+            // populate access modifiers then print
+            SetterGetter.Constructors.AccessModifiers.classs();
             for (String type : SetterGetter.Constructors.AccessModifiers.accessModifyType) {
                 System.out.println(type + "\n");
             }
+
+            // threads demo
             setget.functionalInterface();
+
+            // CompletableFuture demo
             try {
-                runAsync();
-            } catch (InterruptedException | java.util.concurrent.ExecutionException e) {
+                load.runAsync();
+            } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         }

@@ -3,7 +3,7 @@ package com.tutorial.packagee.classs.method;
 public class Attribute {
    public Attribute() { }
 
-   {
+   {   // instance init block (runs before constructor body)
       UNCHANGEABLE = 42;
       TRANSCENDENT = Math.sqrt(2.03d);
       digit = 50;
@@ -47,8 +47,9 @@ public class Attribute {
    }
 
    void wrapperClasses() {
-      calculation = Double.valueOf((((UNCHANGEABLE / (1 - UNCHANGEABLE)) - (1 / (1 + TRANSCENDENT.intValue()))) * digit));
-
+      calculation = Double.valueOf(
+              (((UNCHANGEABLE / (1 - UNCHANGEABLE)) - (1 / (1 + TRANSCENDENT.intValue()))) * digit)
+      );
       exchange = "interact";
    }
 
@@ -144,7 +145,8 @@ public class Attribute {
       stringCompare();
    }
 
-   public static void main(String[] args) {
+   // ===== Demo entry point for Runner =====
+   public static void runDemo() {
       Array();
       Types();
    }

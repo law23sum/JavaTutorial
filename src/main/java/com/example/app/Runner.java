@@ -6,6 +6,7 @@ import com.tutorial.core.datastructure.array.LinearScan;
 import com.tutorial.packagee.classs.clas.implement.encapsulate.BaseClass;
 import com.tutorial.packagee.classs.method.Type;
 import com.tutorial.packagee.classs.clas.implement.RootClass;
+import com.tutorial.packagee.classs.method.Attribute;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Runner {
             System.out.println("3. Linear Scan Demo");
             System.out.println("4. Methods & Concurrency Demo (Type.Overload)");
             System.out.println("5. Abstract Class & Interface Demo (RootClass)");
+            System.out.println("6. Attributes & Arrays Demo (Attribute)");
             System.out.print("> ");
 
             int choice = scanner.nextInt();
@@ -47,6 +49,10 @@ public class Runner {
                 }
                 case 5: {
                     RootClass.runDemo();
+                    break;
+                }
+                case 6: {
+                    Attribute.runDemo();
                     break;
                 }
                 default:

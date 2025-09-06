@@ -139,12 +139,17 @@ public class AnnotationsTest {
     }
 
     static class PaymentGateway {
-        // Simulates transient flaky calls (network jitter, 5xx, etc.)
+        private final Random rnd = new Random(42); // deterministic for CI
+        private final double successRate;
+
+        PaymentGateway() { this(0.90); }           // 90% success
+        PaymentGateway(double successRate) { this.successRate = successRate; }
+
         boolean chargeCents(int cents) {
-            // 70% success rate (flaky)
-            return ThreadLocalRandom.current().nextInt(10) < 7;
+            return rnd.nextDouble() < successRate;
         }
     }
+
 
     // --- Retry Analyzer for flaky/transient tests ---------------------------
     public static class TransientRetry implements IRetryAnalyzer {

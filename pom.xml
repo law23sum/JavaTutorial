@@ -58,6 +58,26 @@
                 </configuration>
             </plugin>
 
+            <!-- Run TestNG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- turn on TestNG default listeners + add the emailable reporter -->
+                    <systemPropertyVariables>
+                        <testng.listeners>org.testng.reporters.EmailableReporter2</testng.listeners>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <!-- Optional: creates a site report under target/site/surefire-report.html -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+
             <!-- Run the app: mvn -DskipTests exec:java -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

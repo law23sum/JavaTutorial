@@ -22,6 +22,12 @@ dependencies {
 
 test {
     useTestNG()
+
+    // Gradle’s own HTML report (on by default, but explicit doesn’t hurt)
+    reports {
+        html.required.set(true)
+        junitXml.required.set(true)
+    }
     systemProperty 'env', System.getProperty('env', 'local')
     systemProperty 'browser', System.getProperty('browser', 'chrome')
 }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.tutorial.testing.testng.tests.AnnotationsTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-09-06T17:00:42.301Z" hostname="Chris-Dixon-MacBook-Pro.local" time="3.708">
+<testsuite name="com.tutorial.testing.testng.tests.AnnotationsTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-09-06T17:37:24.040Z" hostname="Chris-Dixon-MacBook-Pro.local" time="0.014">
   <properties/>
-  <testcase name="login_allRoles_happyPath[0](admin@example.com, correct-horse-battery-staple, ADMIN)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.001"/>
+  <testcase name="login_allRoles_happyPath[0](admin@example.com, correct-horse-battery-staple, ADMIN)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="login_allRoles_happyPath[1](qa@example.com, qa-pass, QA)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="login_allRoles_happyPath[2](user@example.com, user-pass, USER)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="login_lockout_afterThreeFailures" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
-  <testcase name="payment_charge_transientFlakes_areRetried" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
+  <testcase name="payment_charge_transientFlakes_areRetried" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.001"/>
   <testcase name="search_v2_featureFlag_controlsBehavior" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.002"/>
   <testcase name="user_creation_invalidEmail_rejected[0](null)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="user_creation_invalidEmail_rejected[1]()" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="user_creation_invalidEmail_rejected[2](no-at-symbol)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
-  <testcase name="user_creation_invalidEmail_rejected[3](user@bad)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.001"/>
+  <testcase name="user_creation_invalidEmail_rejected[3](user@bad)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
   <testcase name="user_creation_invalidEmail_rejected[4](@missingLocal)" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
-  <testcase name="admin_only_privilegedAction_requiresLogin" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.0"/>
+  <testcase name="admin_only_privilegedAction_requiresLogin" classname="com.tutorial.testing.testng.tests.AnnotationsTest" time="0.001"/>
   <system-out><![CDATA[@BeforeClass - seeded users & flags
 Setting up for smoke tests
 @BeforeMethod - state normalized

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.tutorial.testing.testng.tests.DependenciesTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-09-06T17:00:42.315Z" hostname="Chris-Dixon-MacBook-Pro.local" time="3.695">
+<testsuite name="com.tutorial.testing.testng.tests.DependenciesTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-09-06T17:37:24.051Z" hostname="Chris-Dixon-MacBook-Pro.local" time="0.003">
   <properties/>
-  <testcase name="stepA" classname="com.tutorial.testing.testng.tests.DependenciesTest" time="0.0"/>
+  <testcase name="stepA" classname="com.tutorial.testing.testng.tests.DependenciesTest" time="0.001"/>
   <testcase name="stepB" classname="com.tutorial.testing.testng.tests.DependenciesTest" time="0.0"/>
   <system-out><![CDATA[stepA
 stepB

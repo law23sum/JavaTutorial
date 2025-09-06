@@ -1,13 +1,17 @@
+<!-- src/test/resources/testng.xml -->
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="tutorialSuite" parallel="false">
-    <!-- Set browser parameter via external configuration -->
-    <parameter name="browser" value="${browser:chrome}"/>
 
-    <!-- Organizing tests into groups and using constants for class names -->
+    <!-- Picked up from -Denv / -Dbrowser (see Gradle/Maven below) -->
+    <parameter name="env" value="${env}"/>
+    <parameter name="browser" value="${browser}"/>
+
     <test name="TestNG Demos">
         <packages>
             <package name="com.tutorial.testing.testng"/>
         </packages>
     </test>
+
     <test name="Selenium Demos">
         <groups>
             <run>

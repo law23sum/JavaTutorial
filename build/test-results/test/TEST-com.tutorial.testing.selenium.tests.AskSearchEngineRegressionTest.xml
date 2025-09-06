@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-06T13:56:23.285Z" hostname="Chris-Dixon-MacBook-Pro.local" time="2.433">
+<testsuite name="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-06T16:49:04.688Z" hostname="Chris-Dixon-MacBook-Pro.local" time="2.967">
   <properties/>
-  <testcase name="search_showsResults" classname="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest" time="2.433"/>
+  <testcase name="search_showsResults" classname="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest" time="2.967"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Sep 06, 2025 9:56:23 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Sep 06, 2025 12:49:04 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 139
-Sep 06, 2025 9:56:23 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+Sep 06, 2025 12:49:04 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
 WARNING: Unable to find version of CDP to use for 139.0.7258.157. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.23.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>

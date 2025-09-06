@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.tutorial.testing.testng.groups.GroupsDemoTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-09-06T13:56:22.262Z" hostname="Chris-Dixon-MacBook-Pro.local" time="0.002">
-  <properties/>
-  <testcase name="deeperCheck" classname="com.tutorial.testing.testng.groups.GroupsDemoTest" time="0.001"/>
-  <testcase name="fastCheck" classname="com.tutorial.testing.testng.groups.GroupsDemoTest" time="0.0"/>
-  <system-out><![CDATA[Setting up for smoke tests
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

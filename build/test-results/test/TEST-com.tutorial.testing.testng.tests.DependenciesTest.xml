@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.tutorial.testing.testng.tests.DependenciesTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-09-06T16:49:03.667Z" hostname="Chris-Dixon-MacBook-Pro.local" time="4.084">
+  <properties/>
+  <testcase name="stepA" classname="com.tutorial.testing.testng.tests.DependenciesTest" time="0.0"/>
+  <testcase name="stepB" classname="com.tutorial.testing.testng.tests.DependenciesTest" time="0.0"/>
+  <system-out><![CDATA[stepA
+stepB
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

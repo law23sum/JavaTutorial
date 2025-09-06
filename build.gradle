@@ -21,8 +21,9 @@ dependencies {
 }
 
 test {
-    // Run TestNG tests (JUnit 4 may still coexist)
     useTestNG()
+    systemProperty 'env', System.getProperty('env', 'local')
+    systemProperty 'browser', System.getProperty('browser', 'chrome')
 }
 
 application {
@@ -30,7 +31,7 @@ application {
     mainClass = (project.findProperty('mainClass') ?: 'com.projects.librarymanagement.app.Runner')
 }
 
-// Dedicated run tasks
+
 tasks.register('runLibrary', JavaExec) {
     group = 'application'
     description = 'Run com.projects.librarymanagement.app.Runner'

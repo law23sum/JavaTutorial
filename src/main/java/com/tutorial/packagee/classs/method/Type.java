@@ -8,25 +8,52 @@ import java.util.concurrent.ExecutionException;
 
 import static com.tutorial.packagee.classs.method.Type.Overload.SetterGetter.objectOne;
 
-// Notes / High-level design approach:
-// - This class demonstrates Java concepts like overloading, nested classes,
-//   static vs. non-static behavior, constructors, access modifiers, deprecated
-//   methods, lambdas, and CompletableFuture.
-// - It’s structured with multiple nested classes to group related topics together
-//   and to showcase how nested class scoping works in practice.
+/*
+ * WHAT THIS FILE TEACHES ABOUT "TYPES" IN JAVA
+ * --------------------------------------------
+ * 1) Overloaded Method Signatures (compile-time polymorphism):
+ *    - Same method name, different parameter *types/arity* ⇒ the compiler chooses a target by the signature.
+ *
+ * 2) Declaring and Using Nested Types:
+ *    - Top-level class (Type)
+ *    - Static nested classes (Type.Overload, Overload.SetterGetter, etc.)
+ *    - Instance members vs. static members inside those types.
+ *
+ * 3) Member Visibility and Where a Type/Member is Legal to Access:
+ *    - public / protected / package-private (no keyword) / private (demonstrated via comments + arrays)
+ *
+ * 4) Special Kinds of Types:
+ *    - Annotation types (e.g., @Deprecated) and how they affect API contracts
+ *    - Functional interface type (Runnable) used with lambdas
+ *    - Generic types (CompletableFuture<Void>) and parameterized return/argument types
+ *    - Array types (String[]) as first-class reference types
+ *
+ * 5) Object Lifecycle vs. Class Lifecycle:
+ *    - Static initialization blocks (run once when the *type* is loaded)
+ *    - Instance initialization blocks (run per *object* construction)
+ *
+ * 6) Constructor Overloading & Chaining:
+ *    - Multiple constructors with different parameter types/arity, delegating via this(...)
+ *
+ * 7) Testing Type Scopes:
+ *    - @RunWith(Enclosed.class) treats nested classes as independent test containers.
+ *
+ * NOTE: This is a "type system in practice" sampler—meant to make the surfaces of the type system visible.
+ */
 
-@RunWith(Enclosed.class)  // allows nested classes to be tested independently
+@RunWith(Enclosed.class)  // JUnit: run tests found in static nested classes as separate suites
 public class Type {
 
-    // Static initialization block: runs once when the class is loaded.
+    // Class (type) initialization: executed once when the Type class is loaded by the JVM.
     static {
         System.out.println("\n\t\t to initialize");
     }
 
-    // === Outer nested class to showcase method overloading ===
+    // === A static nested class used to group "overloading" examples and supporting nested types ===
     public static class Overload {
 
-        // Simple overloaded methods: same name, different parameter list.
+        // --- OVERLOADING: same method name, different parameter lists (signatures) ---
+        // The *type* (and/or number) of parameters differentiates these methods.
         void overLoad() {
             System.out.println("nine");
         }
@@ -35,50 +62,58 @@ public class Type {
             System.out.println(digit);
         }
 
-        // === Nested class for demonstrating setters/getters and more ===
+        // === Nested type grouping "setter/getter", init blocks, constructors, modifiers, lambdas ===
         public static class SetterGetter {
+            // A static reference to another type instance (to show static field typing and visibility)
             static Constructors.AnnotationTypes objectOne;
 
-            private int value;  // encapsulated field
+            // Encapsulation: private state is only accessible through typed accessors.
+            private int value;
 
-            // Standard setter
+            // Mutator uses an int (primitive type) parameter.
             public void setValue(int num) {
                 value = num;
             }
 
-            // Standard getter
+            // Accessor returns an int (primitive type).
             public int getValue() {
                 return value;
             }
 
-            // === Inner class to demonstrate static vs. instance blocks ===
+            // === Static vs. instance initialization illustrates class vs. object "lifetimes" ===
             public static class Staticc {
-                // Static initialization block: executed once at class loading
+                // Static init: belongs to the *class* (Type Staticc), runs once at class-load time.
                 static {
                     System.out.println("this is a static initialization block");
-                    staticMethod();  // can call static methods directly
+                    staticMethod();  // legal: calling a static member from a static context
                 }
 
-                // Instance initialization block: runs whenever a new object is created
+                // Instance init: runs *each time* you construct a new object of this type.
                 {
                     System.out.println("this is an instance initialization block");
-                    nonStaticMethod();
+                    nonStaticMethod(); // legal here because 'this' exists
                 }
 
-                // Static method can be called without an instance
+                // Static method: no receiver (belongs to the type itself).
                 static void staticMethod() {
                     System.out.println("called without instantiating");
                 }
 
-                // Non-static method requires an object instance
+                // Instance method: requires a receiver object of type Staticc.
                 void nonStaticMethod() {
                     System.out.println("called with instantiating");
                 }
             }
 
-            // === Nested class to demonstrate constructor overloading ===
+            // === Constructor overloading + chaining to reduce duplication ===
             public static class Constructors {
-                // Constructor chaining: default constructor calls another constructor
+
+                // Fields demonstrate simple member types.
+                String label;
+                int digit;
+                float decimal;
+
+                // No-arg constructor delegates to the most specific one.
                 public Constructors() {
                     this("label", 0, 1.0F);
                 }
@@ -97,129 +132,132 @@ public class Type {
                     this.decimal = decimal;
                 }
 
-                String label;
-                int digit;
-                float decimal;
-
-                // === Class to demonstrate annotations and deprecation ===
+                // --- A nested helper to show annotation usage and API evolution contracts ---
                 static class AnnotationTypes {
                     AnnotationTypes(AnnotationTypes objectOne) {
                         this.objectOne = objectOne;
                     }
 
-                    // Calls a deprecated method, showing how to suppress warnings
+                    // Calls a deprecated API to illustrate how deprecation marks a type/member as legacy.
                     void useDeprecatedMethod() {
                         deprecatedMethod();
                     }
 
-                    /** @deprecated explanation of why it was deprecated */
+                    /** @deprecated This method remains to demonstrate deprecation; do not use in new code. */
                     @Deprecated
                     static void deprecatedMethod() {
-                        // left intentionally blank
+                        // intentionally blank
                     }
 
-                    AnnotationTypes objectOne;
+                    AnnotationTypes objectOne; // self-referential field (type refers to itself)
                 }
 
-                // === Class to showcase access modifier scopes ===
+                // --- Access-modifier demo: what can "see" which types/members? ---
                 public static class AccessModifiers {
+                    // Array is a reference type; here, an array of String references.
                     public static String[] accessModifyType = new String[4];
 
+                    // PUBLIC: visible everywhere the class is visible.
                     public static void world() {
                         accessModifyType = new String[]{"public"};
                     }
 
-                    static void subClass() {  // package-private
+                    // PACKAGE-PRIVATE (no modifier): visible only within the same package.
+                    static void subClass() {
                         accessModifyType = new String[]{"public", "protected"};
                     }
 
-                    protected static void packagee() {  // protected
+                    // PROTECTED: visible to same-package classes and subclasses.
+                    protected static void packagee() {
                         accessModifyType = new String[]{"public", "protected", "none"};
                     }
 
-                    static void classs() {  // private-like demonstration
+                    // PRIVATE-like demonstration via comment: truly private would be invisible outside the class.
+                    // Here we just show the *idea* by naming; the method itself is package-private for demo.
+                    static void classs() {
                         accessModifyType = new String[]{"public", "protected", "none", "private"};
                     }
                 }
             }
 
-            // === Method demonstrating functional interfaces and lambdas ===
+            // === Functional interface + lambda expressions ===
+            // Runnable is a *functional interface type* (exactly one abstract method), so lambdas can target it.
             void functionalInterface() {
-                // Runnable with lambda: old style
+                // Lambda captures the current thread name at runtime; type of 'runnable' is Runnable.
                 Runnable runnable = () ->
                         System.out.println("Old Thread name : " + Thread.currentThread().getName());
                 Thread thread1 = new Thread(runnable);
 
-                // Runnable with inline lambda expression
+                // Inline lambda; still of type Runnable. Demonstrates the same type via different expression.
                 Runnable runnableNew = () ->
                         System.out.println("New Thread name : " + Thread.currentThread().getName());
                 Thread threadNew = new Thread(runnableNew);
 
-                // Start both threads
+                // Start both threads—side effects demonstrate concurrency on typed Thread objects.
                 thread1.start();
                 threadNew.start();
             }
         }
 
-        // === Method demonstrating CompletableFuture usage ===
+        // === CompletableFuture<T> illustrates GENERIC TYPE PARAMETERS and async pipelines ===
         @Test
         public void runAsync() throws InterruptedException, ExecutionException {
-            // runAsync executes a Runnable asynchronously
+            // Type argument is Void (a reference type used to represent "no value" in generics).
             java.util.concurrent.CompletableFuture<Void> future =
                     java.util.concurrent.CompletableFuture.runAsync(
                             () -> System.out.println("runAsync method does not return any value"));
 
-            // get() waits for the task to finish (blocking)
+            // get() blocks until completion and returns a value of type Void (here, null).
             System.out.println(future.get());
         }
 
-        // === Demo entry point for Runner.java ===
+        // === Demo entry point for a Runner class to call; walks each concept once ===
         public static void runDemo() {
-            // Demonstrates overloading
+            // Overloading demo (type-based dispatch at compile time).
             Overload load = new Overload();
 
-            // Demonstrates setters/getters
+            // Encapsulation + accessors (primitive type field with typed getters/setters).
             SetterGetter setget = new SetterGetter();
 
-            // Demonstrates constructor chaining
+            // Constructor chaining (different constructor *types/arity*).
             SetterGetter.Constructors construct = new SetterGetter.Constructors();
 
-            // Demonstrates annotations/deprecation
+            // Annotation/deprecation demo: object acts on its own *type* API.
             SetterGetter.Constructors.AnnotationTypes annotate =
                     new SetterGetter.Constructors.AnnotationTypes(objectOne);
 
-            // Demonstrates static and instance initialization
+            // Static vs. instance initialization blocks and methods.
             SetterGetter.Staticc staticc = new SetterGetter.Staticc();
 
-            // Demonstrates access modifiers setup
+            // Access modifiers demo—populate the String[] based on which scope we “pretend” to be in.
             SetterGetter.Constructors.AccessModifiers modify =
                     new SetterGetter.Constructors.AccessModifiers();
 
-            // Encapsulation test: set and get value
+            // Encapsulation test
             setget.setValue(100);
             System.out.println("\n\t\tvalue = " + setget.getValue());
 
-            // Method overloading
+            // Method overloading in action
             load.overLoad();
             load.overLoad(9);
 
-            // Instance vs. static method
+            // Instance vs static method calls
             staticc.nonStaticMethod();
             SetterGetter.Staticc.staticMethod();
 
-            // Deprecated method usage
+            // Deprecated method usage (compiles, but signals "legacy" via @Deprecated)
             annotate.useDeprecatedMethod();
 
-            // Access modifier demo
+            // Access modifier “progression” (array as a typed container of Strings)
             SetterGetter.Constructors.AccessModifiers.classs();
             for (String type : SetterGetter.Constructors.AccessModifiers.accessModifyType) {
                 System.out.println(type + "\n");
             }
 
-            // Functional interface (lambdas, threads)
+            // Functional interface + lambdas/threads
             setget.functionalInterface();
 
-            // CompletableFuture demo
+            // CompletableFuture (generic type) demo
             try {
                 load.runAsync();
             } catch (InterruptedException | ExecutionException e) {

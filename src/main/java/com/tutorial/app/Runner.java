@@ -3,12 +3,14 @@ package com.tutorial.app;
 import com.tutorial.core.datastructure.array.BinarySearch;
 import com.tutorial.core.datastructure.array.InsertionSort;
 import com.tutorial.core.datastructure.array.LinearScan;
-import com.tutorial.packagee.classs.clas.implement.encapsulate.BaseClass;
-import com.tutorial.packagee.classs.method.Type;
-import com.tutorial.packagee.classs.clas.implement.RootClass;
+import com.tutorial.packagee.classs.clas.concrete.encapsulate.BaseClass;
+import com.tutorial.packagee.classs.clas.abstractt.inherit.polymorph.Polymorphismm;
+import com.tutorial.packagee.classs.method.Type;  // <-- contains Overload.runDemo()
+import com.tutorial.packagee.classs.clas.concrete.RootClass;
 import com.tutorial.packagee.classs.method.Attribute;
 import com.tutorial.packagee.classs.method.ConditionsExceptionsLoopsStatements;
 import com.tutorial.packagee.classs.type.WrapperClass;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,6 +30,7 @@ public class Runner {
                 System.out.println("6. Attributes & Arrays Demo (Attribute)");
                 System.out.println("7. Conditions / Exceptions / Loops Demo");
                 System.out.println("8. Wrapper Class / String Demo");
+                System.out.println("9. Polymorphism Demo (SubClass variants)");
                 System.out.println("0. Exit");
                 System.out.print("> ");
 
@@ -35,6 +38,7 @@ public class Runner {
 
                 switch (choice) {
                     case 1: {
+                        // Binary Search + Insertion Sort
                         InsertionSort run = new InsertionSort();
                         run.print();
                         int[] sortedArray = run.run();
@@ -43,36 +47,47 @@ public class Runner {
                         break;
                     }
                     case 2: {
+                        // Encapsulation Demo
                         BaseClass.runDemo();
                         break;
                     }
                     case 3: {
+                        // Linear Scan Demo
                         LinearScan.runDemo();
                         break;
                     }
                     case 4: {
+                        // Methods, Overloading, Threads, CompletableFuture
                         Type.Overload.runDemo();
                         break;
                     }
                     case 5: {
+                        // Abstract class + interface demo
                         RootClass.runDemo();
                         break;
                     }
                     case 6: {
+                        // Attributes & Arrays Demo
                         Attribute.runDemo();
                         break;
                     }
                     case 7: {
+                        // Conditions, Exceptions, Loops
                         ConditionsExceptionsLoopsStatements.runDemo();
                         break;
                     }
                     case 8: {
+                        // WrapperClass & String operations
                         WrapperClass.runDemo();
                         break;
                     }
                     case 0: {
                         running = false;
                         System.out.println("Exiting Runner... Goodbye!");
+                        break;
+                    }
+                    case 9: {
+                        Polymorphismm.runDemo();
                         break;
                     }
                     default:

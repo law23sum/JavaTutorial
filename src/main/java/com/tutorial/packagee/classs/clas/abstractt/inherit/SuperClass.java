@@ -11,7 +11,7 @@
 //
 package com.tutorial.packagee.classs.clas.abstractt.inherit;
 
-import com.tutorial.packagee.classs.clas.implement.RootClass;
+import com.tutorial.packagee.classs.clas.concrete.RootClass;
 
 public abstract class SuperClass extends RootClass {   // Parent (abstract) class
 

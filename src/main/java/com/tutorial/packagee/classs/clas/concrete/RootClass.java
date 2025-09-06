@@ -23,10 +23,10 @@
 //                              class can implement more than one interface
 //                              multiple inheritance in case of class not possible.
 //                              work around by using interface it can achieve multiple inheritance
-package com.tutorial.packagee.classs.clas.implement;
+package com.tutorial.packagee.classs.clas.concrete;
 
 import com.tutorial.packagee.classs.clas.abstractt.Interface;
-import com.tutorial.packagee.classs.clas.implement.encapsulate.BaseClass;
+import com.tutorial.packagee.classs.clas.concrete.encapsulate.BaseClass;
 
 public abstract class RootClass implements Interface { // Highest Order Super Class
 

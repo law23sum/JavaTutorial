@@ -1,4 +1,4 @@
-package com.tutorial.packagee.classs.clas.implement.encapsulate;
+package com.tutorial.packagee.classs.clas.concrete.encapsulate;
 
 import com.tutorial.packagee.classs.clas.abstractt.inherit.polymorph.SubClass;
 

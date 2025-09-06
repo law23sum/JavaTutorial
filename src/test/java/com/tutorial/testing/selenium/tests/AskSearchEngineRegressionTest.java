@@ -3,9 +3,7 @@ package com.tutorial.testing.selenium.tests;
 import com.tutorial.testing.selenium.pages.pageobjectmodel.AskSearchEngineHomePage;
 import com.tutorial.testing.selenium.pages.pageobjectmodel.AskSearchEngineResultsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +11,11 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AskSearchEngineRegressionTest {
     private static final Logger log = LoggerFactory.getLogger(AskSearchEngineRegressionTest.class);
@@ -22,14 +25,26 @@ public class AskSearchEngineRegressionTest {
     @BeforeClass
     @Parameters({"browser"})
     public void setUp(@Optional("chrome") String browser) {
-        // spin up your driver however you do it; example with Chrome:
-        System.clearProperty("webdriver.chrome.driver"); // ensure Selenium Manager is used
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        // Normalize input (chrome, firefox, edge)
+        String browserName = browser.trim().toLowerCase();
+
+        switch (browserName) {
+            case "firefox" -> {
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            }
+            case "chrome" -> {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browserName);
+        }
+
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         driver.manage().window().setSize(new Dimension(1280, 900));
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
+
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {

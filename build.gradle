@@ -11,7 +11,19 @@ java {
 }
 
 repositories { mavenCentral() }
-dependencies { testImplementation 'junit:junit:4.13.2' }
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    // TestNG and Selenium for testing tutorials
+    testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
+    testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+}
+
+test {
+    // Run TestNG tests (JUnit 4 may still coexist)
+    useTestNG()
+}
 
 application {
     // Default main (override with -PmainClass if you want)

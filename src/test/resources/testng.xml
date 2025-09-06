@@ -1,0 +1,21 @@
+<suite name="tutorialSuite" parallel="false">
+    <!-- Set browser parameter via external configuration -->
+    <parameter name="browser" value="${browser:chrome}"/>
+
+    <!-- Organizing tests into groups and using constants for class names -->
+    <test name="TestNG Demos">
+        <packages>
+            <package name="com.tutorial.testing.testng"/>
+        </packages>
+    </test>
+    <test name="Selenium Demos">
+        <groups>
+            <run>
+                <include name="default"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.tutorial.testing.selenium.tests.AskSearchEngineRegression"/>
+        </classes>
+    </test>
+</suite>

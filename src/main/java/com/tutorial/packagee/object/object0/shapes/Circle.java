@@ -6,7 +6,7 @@ package com.tutorial.packagee.object.object0.shapes;
  */
 public class Circle implements Relatable {
    public Point origin;
-   private int radius;
+   private final int radius;
 
    public Circle(Point origin, int radius) {
       this.origin = origin;

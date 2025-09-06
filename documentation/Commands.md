@@ -2,6 +2,9 @@
 
 mvn clean install test verify
 mvn -DskipTests exec:java
+mvn test
 
-./gradlew --stop || true
+gradle || ./gradlew test
+gradle || ./gradlew clean runTutorial
+gradle || ./gradlew --stop || true
 rm -rf ~/.gradle/caches ~/.gradle/wrapper/dists

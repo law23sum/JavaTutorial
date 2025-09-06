@@ -4,7 +4,7 @@
 package com.tutorial.design.patterns.classs.structural.adapter;
 
 public class Adapter {
-    private Adaptee adaptee;
+    private final Adaptee adaptee;
     
     public Adapter(Adaptee adaptee) {
         this.adaptee = adaptee;

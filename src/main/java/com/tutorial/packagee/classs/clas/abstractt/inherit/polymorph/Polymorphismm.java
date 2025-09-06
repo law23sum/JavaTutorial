@@ -43,16 +43,14 @@ public final class Polymorphismm {
         // 4) Teaching-only: instanceof + cast to reach subclass-specific API
         System.out.println("\n-- instanceof + cast (for demonstration only) --");
         SuperClass maybeLog = new SubClass.LoggingSubClass();
-        if (maybeLog instanceof SubClass.LoggingSubClass) {
-            SubClass.LoggingSubClass log = (SubClass.LoggingSubClass) maybeLog;
+        if (maybeLog instanceof SubClass.LoggingSubClass log) {
             log.setTag("demo-tag");
         }
 
         SuperClass maybeValidate = new SubClass.ValidatingSubClass();
-        if (maybeValidate instanceof SubClass.ValidatingSubClass) {
-            SubClass.ValidatingSubClass val = (SubClass.ValidatingSubClass) maybeValidate;
+        if (maybeValidate instanceof SubClass.ValidatingSubClass val) {
             val.setAllowNegative(true);          // relax guard
-            ((SubClass) maybeValidate).change(-7);
+            maybeValidate.change(-7);
             maybeValidate.displayCurrentState();
         }
 

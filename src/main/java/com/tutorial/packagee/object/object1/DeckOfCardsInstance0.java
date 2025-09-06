@@ -10,8 +10,8 @@ public class DeckOfCardsInstance0 {
             for (int rank = Card.ACE; rank <= Card.KING; rank++) {
                 Card card = deck.getCard(suit, rank);
                 System.out.format("%s of %s%n",
-                        card.rankToString(card.getRank()),
-                        card.suitToString(card.getSuit()));
+                        Card.rankToString(card.getRank()),
+                        Card.suitToString(card.getSuit()));
             }
         }
     }

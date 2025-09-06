@@ -1,9 +1,5 @@
 package com.tutorial.packagee.classs.method;
 
-import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
-
 import java.util.concurrent.ExecutionException;
 
 import static com.tutorial.packagee.classs.method.Type.Overload.SetterGetter.objectOne;
@@ -41,7 +37,6 @@ import static com.tutorial.packagee.classs.method.Type.Overload.SetterGetter.obj
  * NOTE: This is a "type system in practice" sampler—meant to make the surfaces of the type system visible.
  */
 
-@RunWith(Enclosed.class)  // JUnit: run tests found in static nested classes as separate suites
 public class Type {
 
     // Class (type) initialization: executed once when the Type class is loaded by the JVM.
@@ -200,7 +195,6 @@ public class Type {
         }
 
         // === CompletableFuture<T> illustrates GENERIC TYPE PARAMETERS and async pipelines ===
-        @Test
         public void runAsync() throws InterruptedException, ExecutionException {
             // Type argument is Void (a reference type used to represent "no value" in generics).
             java.util.concurrent.CompletableFuture<Void> future =

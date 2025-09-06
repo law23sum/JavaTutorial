@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.tutorial'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+}
+
+repositories { mavenCentral() }
+dependencies { testImplementation 'junit:junit:4.13.2' }
+
+application {
+    // Default main (override with -PmainClass if you want)
+    mainClass = (project.findProperty('mainClass') ?: 'com.projects.librarymanagement.app.Runner')
+}
+
+// Dedicated run tasks
+tasks.register('runLibrary', JavaExec) {
+    group = 'application'
+    description = 'Run com.projects.librarymanagement.app.Runner'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('com.projects.librarymanagement.app.Runner')
+    standardInput = System.in           // ← important
+    mustRunAfter 'build'
+}
+
+tasks.register('runTutorial', JavaExec) {
+    group = 'application'
+    description = 'Run com.tutorial.app.Runner'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('com.tutorial.app.Runner')
+    standardInput = System.in           // ← important
+    mustRunAfter 'build'
+}
+
+// Also fix the default 'run' task created by the application plugin
+tasks.named('run', JavaExec).configure {
+    standardInput = System.in           // ← important
+    mustRunAfter 'build'
+}
+
+// CI-ish chains (optional)
+tasks.register('install') {
+    group = 'build'
+    description = 'Alias for Maven-like install; depends on build.'
+    dependsOn tasks.named('build')
+}
+tasks.register('ciRunLibrary') {
+    group = 'application'
+    dependsOn 'clean', 'install', 'runLibrary'
+}
+tasks.register('ciRunTutorial') {
+    group = 'application'
+    dependsOn 'clean', 'install', 'runTutorial'
+}
+
+// If you want tutorial by default, use 'runTutorial' here:
+defaultTasks 'clean', 'build', 'runTutorial'

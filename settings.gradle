@@ -1,21 +1,3 @@
-plugins {
-    id 'java'
-    id 'application'
-}
+rootProject.name = "JavaTutorial"
 
-group = 'com.example'
-version = '0.1.0'
-
-java { toolchain { languageVersion = JavaLanguageVersion.of(17) } }
-
-repositories { mavenCentral() }
-
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
-}
-
-application {
-    mainClass = 'com.tutorial.app.Runner'
-}
-
-test { useJUnitPlatform() }
+// Note: task wiring (clean/install/build/run) is defined in build.gradle

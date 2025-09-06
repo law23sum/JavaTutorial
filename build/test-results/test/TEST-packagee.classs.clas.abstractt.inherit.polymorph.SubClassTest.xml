@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-09-06T11:01:22.498Z" hostname="Mac.home" time="0.001">
+  <properties/>
+  <testcase name="testSetNewEvent" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.001"/>
+  <testcase name="testSetNewState" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.0"/>
+  <testcase name="testGetNewEvent" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.0"/>
+  <testcase name="testGetNewState" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.0"/>
+  <testcase name="testTestChange" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.0"/>
+  <testcase name="testChange" classname="packagee.classs.clas.abstractt.inherit.polymorph.SubClassTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

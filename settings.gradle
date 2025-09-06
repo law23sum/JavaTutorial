@@ -1,2 +1,21 @@
-rootProject.name = 'law23sum'
-include('lib')
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '0.1.0'
+
+java { toolchain { languageVersion = JavaLanguageVersion.of(17) } }
+
+repositories { mavenCentral() }
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+}
+
+application {
+    mainClass = 'com.tutorial.app.Runner'
+}
+
+test { useJUnitPlatform() }

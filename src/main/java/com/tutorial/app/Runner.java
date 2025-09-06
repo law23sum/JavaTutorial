@@ -1,4 +1,4 @@
-package com.example.app;
+package com.tutorial.app;
 
 import com.tutorial.core.datastructure.array.BinarySearch;
 import com.tutorial.core.datastructure.array.InsertionSort;

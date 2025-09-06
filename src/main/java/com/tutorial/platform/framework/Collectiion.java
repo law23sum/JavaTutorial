@@ -11,23 +11,29 @@ import java.util.Iterator;
 
 public class Collectiion {
 
-public static void IteratorUsage() {
-   ArrayList<String> cars = new ArrayList<>();
-   cars.add("Adui");
-   cars.add("BMW");
-   cars.add("Toyota");
-   Collectiion iterate = new Collectiion();
-   Iterator<String> it = cars.iterator();
-   System.out.println(it.hasNext());
-   String temp = "Toyota";
-   while (it.hasNext()) {
-      if (temp.equals(it.next())) {
-         it.remove();
-      } else System.out.println(it.next());
-   }
-}
+    public static void iteratorUsage() {
+        ArrayList<Object> cars = new ArrayList<>();
+        cars.add("Audi");
+        cars.add("BMW");
+        cars.add("Toyota");
 
-public static void main(String[] args) {
- IteratorUsage();
-}
+        Iterator<Object> it = cars.iterator();
+        String target = "Toyota";
+
+        while (it.hasNext()) {
+            String current = (String) it.next(); // advance exactly once
+            if (target.equals(current)) {
+                it.remove();            // safely remove the last returned element
+            } else {
+                System.out.println(current);
+            }
+        }
+
+        System.out.println("Remaining: " + cars);
+    }
+
+
+    public static void main(String[] args) {
+        iteratorUsage();
+    }
 }

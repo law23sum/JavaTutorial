@@ -5,6 +5,7 @@ import com.tutorial.testing.selenium.pages.common.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
@@ -31,9 +32,7 @@ public class AskSearchEngineHomePage extends BasePage implements Page.Loadable, 
         return getTitle().toLowerCase().contains("ask") && searchBox.isReady();
     }
 
-    /**
-     * Perform a search and land on results
-     */
+    /** Perform a search and land on results */
     public AskSearchEngineResultsPage search(String query) {
         return searchBox.search(query);
     }
@@ -55,9 +54,17 @@ public class AskSearchEngineHomePage extends BasePage implements Page.Loadable, 
         }
 
         AskSearchEngineResultsPage search(String query) {
-            var box = waitUntil(ExpectedConditions.elementToBeClickable(SEARCH_BOX));
-            box.clear();
-            box.sendKeys(query, Keys.ENTER);
+            WebElement box = waitUntil(ExpectedConditions.elementToBeClickable(SEARCH_BOX));
+
+            // First click into the box
+            click(box);
+
+            // Then type the query
+            type(box, query);
+
+            // Finally hit Enter
+            box.sendKeys(Keys.ENTER);
+
             return new AskSearchEngineResultsPage(driver);
         }
     }

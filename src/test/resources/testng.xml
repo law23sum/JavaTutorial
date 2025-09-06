@@ -15,7 +15,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.tutorial.testing.selenium.tests.AskSearchEngineRegression"/>
+            <class name="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest"/>
         </classes>
     </test>
 </suite>

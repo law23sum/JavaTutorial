@@ -1,11 +1,9 @@
 package com.tutorial.packagee.object.object0.shapes;
 
+// Simple 2D point (kept public fields for brevity in demos)
 public class Point {
-   public Point(int a, int b) {  //constructor
-      x = a;
-      y = b;
-   }
+   public int x;
+   public int y;
 
-   public int x = 0;             //declarations
-   public int y = 0;
+   public Point(int x, int y) { this.x = x; this.y = y; }
 }

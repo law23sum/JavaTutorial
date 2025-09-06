@@ -1,53 +1,45 @@
 package com.tutorial.packagee.object.object0.shapes;
 
-import static java.lang.Math.sqrt;
-
-public class Circle {
-   public int x = 0;
-   protected int y = 0;
+/*
+ * Implements Relatable by comparing AREA (πr²).
+ * Also supports comparison against Rectangle.
+ */
+public class Circle implements Relatable {
    public Point origin;
+   private int radius;
 
-   public Circle() {
-      origin = new Point(0, 0);
+   public Circle(Point origin, int radius) {
+      this.origin = origin;
+      this.radius = radius;
    }
 
-   public Circle(Point p) {
-      origin = p;
-   }
-
-   public Circle(int x, int y) {
-      origin = new Point(0, 0);
-      this.x = x;
-      this.y = y;
-   }
-
-   public Circle(Point p, int x, int y) {
-      origin = p;
-   }
-
-   public void move(Circle circle, int deltaX, int deltaY) {
-      circle.setX(circle.getX() + deltaX);                    // code to move origin of circle to x+deltaX, y+deltaY
-      circle.setY(circle.getY() + deltaY);
-      circle = new Circle(0, 0);                        // code to assign a new reference to circle
+   public Circle(int radius) {
+      this(new Point(0, 0), radius);
    }
 
    public int getRadius() {
-      return (int) sqrt((x * x) + (y * y));
+      return radius;
    }
 
-   public int getX() {
-      return this.x;
+   public double getArea() {
+      return Math.PI * radius * radius;
    }
 
-   public void setX(int x) {
-      this.x = x;
+   public void move(int dx, int dy) {
+      origin.x += dx;
+      origin.y += dy;
    }
 
-   public int getY() {
-      return this.y;
+   @Override
+   public int isLargerThan(Relatable other) {
+      double a1 = this.getArea();
+      double a2 = areaOf(other);
+      return Double.compare(a1, a2);
    }
 
-   public void setY(int y) {
-      this.y = y;
+   private static double areaOf(Relatable r) {
+      if (r instanceof Circle c)    return c.getArea();
+      if (r instanceof Rectangle r2) return r2.getArea();
+      throw new IllegalArgumentException("Unsupported comparable type: " + r.getClass().getName());
    }
 }

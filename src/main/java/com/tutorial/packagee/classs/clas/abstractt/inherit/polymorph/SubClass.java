@@ -10,15 +10,7 @@ import com.tutorial.packagee.classs.clas.abstractt.inherit.SuperClass;
  * - Overloading: change(), change(int), change(int, boolean)
  * - Overriding (dynamic dispatch): displayCurrentState(), onStateChanged(...)
  */
-public abstract class SubClass extends SuperClass implements Stateful {
-
-    // ---------- Interface (kept inside to reduce files) ----------
-    public interface Stateful {
-        void incrementState();
-        void decrementState();
-        int getNewState();
-        void displayCurrentState();
-    }
+public abstract class SubClass extends SuperClass {
 
     // ---------- Encapsulated State ----------
     private int newState = 0;

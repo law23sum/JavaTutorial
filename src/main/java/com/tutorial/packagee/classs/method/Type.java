@@ -1,114 +1,84 @@
 package com.tutorial.packagee.classs.method;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import static com.tutorial.packagee.classs.method.Type.Overload.SetterGetter.objectOne;
-
-/*
- * WHAT THIS FILE TEACHES ABOUT "TYPES" IN JAVA
- * --------------------------------------------
- * 1) Overloaded Method Signatures (compile-time polymorphism):
- *    - Same method name, different parameter *types/arity* ⇒ the compiler chooses a target by the signature.
+/**
+ * Type System Sampler
  *
- * 2) Declaring and Using Nested Types:
- *    - Top-level class (Type)
- *    - Static nested classes (Type.Overload, Overload.SetterGetter, etc.)
- *    - Instance members vs. static members inside those types.
+ * What this file demonstrates:
+ * 1) Method Overloading (compile-time polymorphism).
+ * 2) Nested Types (static nested classes) and visibility.
+ * 3) Access Modifiers (public, protected, package-private, private via example).
+ * 4) Special Kinds of Types: annotations, functional interfaces (lambdas), generics, arrays.
+ * 5) Class vs. Object Lifecycle: static vs. instance initialization blocks.
+ * 6) Constructor Overloading & Chaining.
+ * 7) A single runnable demo that walks each concept.
  *
- * 3) Member Visibility and Where a Type/Member is Legal to Access:
- *    - public / protected / package-private (no keyword) / private (demonstrated via comments + arrays)
- *
- * 4) Special Kinds of Types:
- *    - Annotation types (e.g., @Deprecated) and how they affect API contracts
- *    - Functional interface type (Runnable) used with lambdas
- *    - Generic types (CompletableFuture<Void>) and parameterized return/argument types
- *    - Array types (String[]) as first-class reference types
- *
- * 5) Object Lifecycle vs. Class Lifecycle:
- *    - Static initialization blocks (run once when the *type* is loaded)
- *    - Instance initialization blocks (run per *object* construction)
- *
- * 6) Constructor Overloading & Chaining:
- *    - Multiple constructors with different parameter types/arity, delegating via this(...)
- *
- * 7) Testing Type Scopes:
- *    - @RunWith(Enclosed.class) treats nested classes as independent test containers.
- *
- * NOTE: This is a "type system in practice" sampler—meant to make the surfaces of the type system visible.
+ * Keep this file as a reference—each section is intentionally small and explicit.
  */
-
 public class Type {
 
-    // Class (type) initialization: executed once when the Type class is loaded by the JVM.
+    // Runs once when Type is loaded by the JVM.
     static {
-        System.out.println("\n\t\t to initialize");
+        System.out.println("[Type] static init");
     }
 
-    // === A static nested class used to group "overloading" examples and supporting nested types ===
+    /** Grouping for overloading + supporting nested demos. */
     public static class Overload {
 
-        // --- OVERLOADING: same method name, different parameter lists (signatures) ---
-        // The *type* (and/or number) of parameters differentiates these methods.
+        // -----------------------
+        // 1) METHOD OVERLOADING
+        // -----------------------
         void overLoad() {
-            System.out.println("nine");
+            System.out.println("[Overload] no-arg");
         }
 
         void overLoad(int digit) {
-            System.out.println(digit);
+            System.out.println("[Overload] int-arg -> " + digit);
         }
 
-        // === Nested type grouping "setter/getter", init blocks, constructors, modifiers, lambdas ===
+        // ------------------------------------------------
+        // 2) NESTED TYPES + ENCAPSULATION + LIFECYCLES
+        // ------------------------------------------------
         public static class SetterGetter {
-            // A static reference to another type instance (to show static field typing and visibility)
+
+            // Static reference to illustrate type visibility across nested classes.
             static Constructors.AnnotationTypes objectOne;
 
-            // Encapsulation: private state is only accessible through typed accessors.
+            // Encapsulated state.
             private int value;
 
-            // Mutator uses an int (primitive type) parameter.
-            public void setValue(int num) {
-                value = num;
-            }
+            public void setValue(int num) { this.value = num; }
+            public int getValue() { return value; }
 
-            // Accessor returns an int (primitive type).
-            public int getValue() {
-                return value;
-            }
-
-            // === Static vs. instance initialization illustrates class vs. object "lifetimes" ===
-            public static class Staticc {
-                // Static init: belongs to the *class* (Type Staticc), runs once at class-load time.
+            /** Class vs. Object lifecycle demo. */
+            public static class StaticInitDemo {
                 static {
-                    System.out.println("this is a static initialization block");
-                    staticMethod();  // legal: calling a static member from a static context
+                    System.out.println("[StaticInitDemo] static init");
+                    staticMethod();
                 }
 
-                // Instance init: runs *each time* you construct a new object of this type.
-                {
-                    System.out.println("this is an instance initialization block");
-                    nonStaticMethod(); // legal here because 'this' exists
+                { // instance init
+                    System.out.println("[StaticInitDemo] instance init");
+                    instanceMethod();
                 }
 
-                // Static method: no receiver (belongs to the type itself).
                 static void staticMethod() {
-                    System.out.println("called without instantiating");
+                    System.out.println("[StaticInitDemo] static method");
                 }
 
-                // Instance method: requires a receiver object of type Staticc.
-                void nonStaticMethod() {
-                    System.out.println("called with instantiating");
+                void instanceMethod() {
+                    System.out.println("[StaticInitDemo] instance method");
                 }
             }
 
-            // === Constructor overloading + chaining to reduce duplication ===
+            /** Constructor overloading + chaining. */
             public static class Constructors {
-
-                // Fields demonstrate simple member types.
                 String label;
                 int digit;
                 float decimal;
 
-                // No-arg constructor delegates to the most specific one.
                 public Constructors() {
                     this("label", 0, 1.0F);
                 }
@@ -127,131 +97,119 @@ public class Type {
                     this.decimal = decimal;
                 }
 
-                // --- A nested helper to show annotation usage and API evolution contracts ---
+                /** Shows annotation usage and deprecated API signaling. */
                 static class AnnotationTypes {
+                    AnnotationTypes objectOne; // self-reference (type referencing its own type)
+
                     AnnotationTypes(AnnotationTypes objectOne) {
                         this.objectOne = objectOne;
                     }
 
-                    // Calls a deprecated API to illustrate how deprecation marks a type/member as legacy.
                     void useDeprecatedMethod() {
-                        deprecatedMethod();
+                        deprecatedMethod(); // compiles; warns callers this is legacy
                     }
 
-                    /** @deprecated This method remains to demonstrate deprecation; do not use in new code. */
+                    /** @deprecated Demonstration only; avoid in new code. */
                     @Deprecated
                     static void deprecatedMethod() {
-                        // intentionally blank
+                        // no-op
                     }
-
-                    AnnotationTypes objectOne; // self-referential field (type refers to itself)
                 }
 
-                // --- Access-modifier demo: what can "see" which types/members? ---
+                /** Access modifier examples using a String[] as a simple container. */
                 public static class AccessModifiers {
-                    // Array is a reference type; here, an array of String references.
-                    public static String[] accessModifyType = new String[4];
+                    public static String[] accessLevels = new String[4];
 
-                    // PUBLIC: visible everywhere the class is visible.
+                    // PUBLIC: visible everywhere.
                     public static void world() {
-                        accessModifyType = new String[]{"public"};
+                        accessLevels = new String[] {"public"};
                     }
 
-                    // PACKAGE-PRIVATE (no modifier): visible only within the same package.
+                    // PACKAGE-PRIVATE: visible only within the package.
                     static void subClass() {
-                        accessModifyType = new String[]{"public", "protected"};
+                        accessLevels = new String[] {"public", "protected"};
                     }
 
-                    // PROTECTED: visible to same-package classes and subclasses.
-                    protected static void packagee() {
-                        accessModifyType = new String[]{"public", "protected", "none"};
+                    // PROTECTED: visible to same-package + subclasses.
+                    protected static void packageLevel() {
+                        accessLevels = new String[] {"public", "protected", "package-private"};
                     }
 
-                    // PRIVATE-like demonstration via comment: truly private would be invisible outside the class.
-                    // Here we just show the *idea* by naming; the method itself is package-private for demo.
-                    static void classs() {
-                        accessModifyType = new String[]{"public", "protected", "none", "private"};
+                    // PRIVATE (conceptual): we can’t actually call a private method from outside.
+                    // For demonstration, we keep this package-private but name it “classLevel”.
+                    static void classLevel() {
+                        accessLevels = new String[] {"public", "protected", "package-private", "private"};
                     }
                 }
             }
 
-            // === Functional interface + lambda expressions ===
-            // Runnable is a *functional interface type* (exactly one abstract method), so lambdas can target it.
-            void functionalInterface() {
-                // Lambda captures the current thread name at runtime; type of 'runnable' is Runnable.
-                Runnable runnable = () ->
-                        System.out.println("Old Thread name : " + Thread.currentThread().getName());
-                Thread thread1 = new Thread(runnable);
+            // -----------------------------------------
+            // 4) FUNCTIONAL INTERFACE + LAMBDAS/THREADS
+            // -----------------------------------------
+            void functionalInterfaceDemo() {
+                Runnable r1 = () ->
+                        System.out.println("[Thread] old name -> " + Thread.currentThread().getName());
+                Runnable r2 = () ->
+                        System.out.println("[Thread] new name -> " + Thread.currentThread().getName());
 
-                // Inline lambda; still of type Runnable. Demonstrates the same type via different expression.
-                Runnable runnableNew = () ->
-                        System.out.println("New Thread name : " + Thread.currentThread().getName());
-                Thread threadNew = new Thread(runnableNew);
-
-                // Start both threads—side effects demonstrate concurrency on typed Thread objects.
-                thread1.start();
-                threadNew.start();
+                Thread t1 = new Thread(r1, "Demo-1");
+                Thread t2 = new Thread(r2, "Demo-2");
+                t1.start();
+                t2.start();
             }
         }
 
-        // === CompletableFuture<T> illustrates GENERIC TYPE PARAMETERS and async pipelines ===
+        // -----------------------------------------
+        // 5) GENERICS + ASYNC (CompletableFuture<T>)
+        // -----------------------------------------
         public void runAsync() throws InterruptedException, ExecutionException {
-            // Type argument is Void (a reference type used to represent "no value" in generics).
-            java.util.concurrent.CompletableFuture<Void> future =
-                    java.util.concurrent.CompletableFuture.runAsync(
-                            () -> System.out.println("runAsync method does not return any value"));
+            CompletableFuture<Void> future =
+                    CompletableFuture.runAsync(() ->
+                            System.out.println("[CompletableFuture] runAsync side-effect only"));
 
-            // get() blocks until completion and returns a value of type Void (here, null).
-            System.out.println(future.get());
+            // Blocks until complete; returns null for Void.
+            System.out.println("[CompletableFuture] get -> " + future.get());
         }
 
-        // === Demo entry point for a Runner class to call; walks each concept once ===
+        // -----------------------
+        // 6) WALK THE WHOLE DEMO
+        // -----------------------
         public static void runDemo() {
-            // Overloading demo (type-based dispatch at compile time).
+            // Overloading
             Overload load = new Overload();
-
-            // Encapsulation + accessors (primitive type field with typed getters/setters).
-            SetterGetter setget = new SetterGetter();
-
-            // Constructor chaining (different constructor *types/arity*).
-            SetterGetter.Constructors construct = new SetterGetter.Constructors();
-
-            // Annotation/deprecation demo: object acts on its own *type* API.
-            SetterGetter.Constructors.AnnotationTypes annotate =
-                    new SetterGetter.Constructors.AnnotationTypes(objectOne);
-
-            // Static vs. instance initialization blocks and methods.
-            SetterGetter.Staticc staticc = new SetterGetter.Staticc();
-
-            // Access modifiers demo—populate the String[] based on which scope we “pretend” to be in.
-            SetterGetter.Constructors.AccessModifiers modify =
-                    new SetterGetter.Constructors.AccessModifiers();
-
-            // Encapsulation test
-            setget.setValue(100);
-            System.out.println("\n\t\tvalue = " + setget.getValue());
-
-            // Method overloading in action
             load.overLoad();
             load.overLoad(9);
 
-            // Instance vs static method calls
-            staticc.nonStaticMethod();
-            SetterGetter.Staticc.staticMethod();
+            // Encapsulation + accessors
+            SetterGetter sg = new SetterGetter();
+            sg.setValue(100);
+            System.out.println("[SetterGetter] value -> " + sg.getValue());
 
-            // Deprecated method usage (compiles, but signals "legacy" via @Deprecated)
-            annotate.useDeprecatedMethod();
+            // Constructor chaining
+            SetterGetter.Constructors constructors = new SetterGetter.Constructors();
+            System.out.println("[Constructors] label=" + constructors.label
+                    + ", digit=" + constructors.digit + ", decimal=" + constructors.decimal);
 
-            // Access modifier “progression” (array as a typed container of Strings)
-            SetterGetter.Constructors.AccessModifiers.classs();
-            for (String type : SetterGetter.Constructors.AccessModifiers.accessModifyType) {
-                System.out.println(type + "\n");
+            // Annotation/deprecation demo
+            SetterGetter.Constructors.AnnotationTypes at =
+                    new SetterGetter.Constructors.AnnotationTypes(SetterGetter.objectOne);
+            at.useDeprecatedMethod();
+
+            // Static vs. instance initialization
+            SetterGetter.StaticInitDemo demo = new SetterGetter.StaticInitDemo();
+            demo.instanceMethod();
+            SetterGetter.StaticInitDemo.staticMethod();
+
+            // Access modifier progression (array as a typed container of Strings)
+            SetterGetter.Constructors.AccessModifiers.classLevel();
+            for (String lvl : SetterGetter.Constructors.AccessModifiers.accessLevels) {
+                System.out.println("[Access] " + lvl);
             }
 
-            // Functional interface + lambdas/threads
-            setget.functionalInterface();
+            // Functional interface + lambdas
+            sg.functionalInterfaceDemo();
 
-            // CompletableFuture (generic type) demo
+            // Generics + async
             try {
                 load.runAsync();
             } catch (InterruptedException | ExecutionException e) {

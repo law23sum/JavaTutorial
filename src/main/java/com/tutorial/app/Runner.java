@@ -8,7 +8,7 @@ import com.tutorial.packagee.classs.clas.abstractt.inherit.polymorph.Polymorphis
 import com.tutorial.packagee.classs.method.Type;  // <-- contains Overload.runDemo()
 import com.tutorial.packagee.classs.clas.concrete.RootClass;
 import com.tutorial.packagee.classs.method.Attribute;
-import com.tutorial.packagee.classs.method.ConditionsExceptionsLoopsStatements;
+import com.tutorial.packagee.classs.method.ConditionalsLoopsExceptions;
 import com.tutorial.packagee.classs.type.WrapperClass;
 
 import java.util.InputMismatchException;
@@ -73,7 +73,7 @@ public class Runner {
                     }
                     case 7: {
                         // Conditions, Exceptions, Loops
-                        ConditionsExceptionsLoopsStatements.runDemo();
+                        ConditionalsLoopsExceptions.runDemo();
                         break;
                     }
                     case 8: {

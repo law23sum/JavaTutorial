@@ -1,6 +1,6 @@
 package com.tutorial.core.datastructure.array;
 
-import com.tutorial.library.BasicFunctions;
+import com.library.custom.BasicFunctions;
 
 // thorough yet inefficient
 public class LinearScan { // search a sorted list

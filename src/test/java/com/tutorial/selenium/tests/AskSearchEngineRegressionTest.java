@@ -1,7 +1,7 @@
-package com.tutorial.testing.selenium.tests;
+package com.tutorial.selenium.tests;
 
-import com.tutorial.testing.selenium.pages.pageobjectmodel.AskSearchEngineHomePage;
-import com.tutorial.testing.selenium.pages.pageobjectmodel.AskSearchEngineResultsPage;
+import com.tutorial.selenium.pages.pageobjectmodel.AskSearchEngineHomePage;
+import com.tutorial.selenium.pages.pageobjectmodel.AskSearchEngineResultsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +14,6 @@ import java.time.Duration;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AskSearchEngineRegressionTest {

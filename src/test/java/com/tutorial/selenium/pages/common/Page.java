@@ -1,4 +1,4 @@
-package com.tutorial.testing.selenium.pages.common;
+package com.tutorial.selenium.pages.common;
 
 /**
  * Core page contracts for the Selenium tutorial.

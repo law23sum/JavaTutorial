@@ -1,4 +1,4 @@
-package com.tutorial.testing.testng.tests;
+package com.tutorial.testng.tests;
 
 import org.testng.Assert;
 import org.testng.IRetryAnalyzer;

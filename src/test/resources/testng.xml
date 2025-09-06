@@ -11,7 +11,7 @@
             <package name="com.tutorial.testing.testng.tests"/>
         </packages>
         <classes>
-            <class name="com.tutorial.testing.testng.tests.AnnotationsTest"/>
+            <class name="com.tutorial.testng.tests.AnnotationsTest"/>
         </classes>
     </test>
 
@@ -23,7 +23,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest"/>
+            <class name="com.tutorial.selenium.tests.AskSearchEngineRegressionTest"/>
         </classes>
         <!-- If you later add more Selenium tests under the same package,
              you can switch to packages-based discovery:

@@ -4,7 +4,7 @@
 //
 //           Iterator Interface shown on usage. Iterator, & Collections are interfaces while ArrayList are its
 //           implementations, hence usage of iterators methods.
-package com.tutorial.platform.framework;
+package com.tutorial.framework;
 
 import java.util.ArrayList;
 import java.util.Iterator;

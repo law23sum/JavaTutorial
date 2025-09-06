@@ -1,4 +1,4 @@
-package com.tutorial.platform.library;
+package com.tutorial.library;
 
 public class BasicFunctions {
    public static double randomNumberGenerator() {

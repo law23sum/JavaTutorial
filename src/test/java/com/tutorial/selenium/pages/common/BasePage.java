@@ -1,4 +1,4 @@
-package com.tutorial.testing.selenium.pages.common;
+package com.tutorial.selenium.pages.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

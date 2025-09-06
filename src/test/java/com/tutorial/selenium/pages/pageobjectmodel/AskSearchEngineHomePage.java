@@ -1,7 +1,7 @@
-package com.tutorial.testing.selenium.pages.pageobjectmodel;
+package com.tutorial.selenium.pages.pageobjectmodel;
 
-import com.tutorial.testing.selenium.pages.common.BasePage;
-import com.tutorial.testing.selenium.pages.common.Page;
+import com.tutorial.selenium.pages.common.BasePage;
+import com.tutorial.selenium.pages.common.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

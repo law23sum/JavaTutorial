@@ -1,6 +1,6 @@
 package com.tutorial.core.datastructure.array;
 
-import com.tutorial.platform.library.BasicFunctions;
+import com.tutorial.library.BasicFunctions;
 
 public class InsertionSort {
    private final int length = 7000;

@@ -1,6 +1,7 @@
 
 
 mvn clean install test verify
+mvn -Denv=staging -Dbrowser=firefox test
 mvn -DskipTests exec:java
 
 gradle || ./gradlew test

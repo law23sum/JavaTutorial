@@ -1,17 +1,21 @@
-<!-- src/test/resources/testng.xml -->
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="tutorialSuite" parallel="false">
 
-    <!-- Picked up from -Denv / -Dbrowser (see Gradle/Maven below) -->
+    <!-- Passed in via -Denv / -Dbrowser; defaults handled in code with @Optional -->
     <parameter name="env" value="${env}"/>
     <parameter name="browser" value="${browser}"/>
 
+    <!-- TestNG demo package -->
     <test name="TestNG Demos">
         <packages>
-            <package name="com.tutorial.testing.testng"/>
+            <package name="com.tutorial.testing.testng.tests"/>
         </packages>
+        <classes>
+            <class name="com.tutorial.testing.testng.tests.AnnotationsTest"/>
+        </classes>
     </test>
 
+    <!-- Selenium regression tests -->
     <test name="Selenium Demos">
         <groups>
             <run>
@@ -21,5 +25,12 @@
         <classes>
             <class name="com.tutorial.testing.selenium.tests.AskSearchEngineRegressionTest"/>
         </classes>
+        <!-- If you later add more Selenium tests under the same package,
+             you can switch to packages-based discovery:
+             <packages>
+               <package name="com.tutorial.testing.selenium.tests"/>
+             </packages>
+        -->
     </test>
+
 </suite>

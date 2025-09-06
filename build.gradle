@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'org.tutorial'
+group = 'com.tutorial'
 version = '1.0-SNAPSHOT'
 
 java {

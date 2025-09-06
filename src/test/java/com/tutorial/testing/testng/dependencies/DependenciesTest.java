@@ -3,7 +3,7 @@ package com.tutorial.testing.testng.dependencies;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DependenciesDemoTest {
+public class DependenciesTest {
 
     @Test
     public void stepA() { System.out.println("stepA"); }

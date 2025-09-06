@@ -2,7 +2,7 @@ package com.tutorial.testing.testng.annotations;
 
 import org.testng.annotations.*;
 
-public class AnnotationsDemoTest {
+public class AnnotationsTest {
 
     @BeforeSuite
     public void beforeSuite() { System.out.println("@BeforeSuite"); }

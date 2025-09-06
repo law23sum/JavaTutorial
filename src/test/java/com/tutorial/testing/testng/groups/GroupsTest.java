@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
-public class GroupsDemoTest {
+public class GroupsTest {
 
     @BeforeGroups("smoke")
     public void beforeSmoke() { System.out.println("Setting up for smoke tests"); }

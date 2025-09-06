@@ -1,4 +1,4 @@
-package com.tutorial.testing.testng.groups;
+package com.tutorial.testing.testng.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;

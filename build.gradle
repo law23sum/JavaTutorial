@@ -1,82 +1,77 @@
 plugins {
     id 'java'
-    id 'application'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.5'
 }
 
-group = 'com.tutorial'
-version = '1.0-SNAPSHOT'
+group = 'com.framework'
+version = '1.0.0'
 
 java {
     toolchain { languageVersion = JavaLanguageVersion.of(17) }
 }
 
 repositories { mavenCentral() }
+
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    // TestNG and Selenium for testing tutorials
+    // --- Spring Boot app deps
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    runtimeOnly   'com.h2database:h2'
+
+    // --- Spring Boot test stack (kept; mainly JUnit/MockMvc)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // --- Your existing tutorial/testing stack
+    testImplementation 'junit:junit:4.13.2'                         // optional; TestNG is primary below
     testImplementation 'org.testng:testng:7.10.2'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
-    testImplementation 'org.testng:testng:7.10.2'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
 }
 
 test {
-    systemProperty 'env', System.getProperty('env', 'local')
-    systemProperty 'browser', System.getProperty('browser', 'chrome')
-
+    // run TestNG tests
     useTestNG()
 
-    // Gradle’s own HTML report (on by default, but explicit doesn’t hurt)
+    // pass-through system properties (as before)
+    systemProperty 'env',     System.getProperty('env', 'local')
+    systemProperty 'browser', System.getProperty('browser', 'chrome')
+
+    // reports (explicit)
     reports {
         html.required.set(true)
         junitXml.required.set(true)
     }
 }
 
-application {
-    // Default main (override with -PmainClass if you want)
-    mainClass = (project.findProperty('mainClass') ?: 'com.projects.librarymanagement.app.Runner')
+/**
+ * Optional but nice: make the main class explicit for IDEs and custom tooling.
+ * Spring Boot will auto-detect @SpringBootApplication if this is omitted.
+ */
+springBoot {
+    mainClass = 'com.framework.spring.SpringApp'
 }
 
-
-tasks.register('runLibrary', JavaExec) {
-    group = 'application'
-    description = 'Run com.projects.librarymanagement.app.Runner'
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass.set('com.projects.librarymanagement.app.Runner')
-    standardInput = System.in           // ← important
-    mustRunAfter 'build'
-}
-
-tasks.register('runTutorial', JavaExec) {
-    group = 'application'
-    description = 'Run com.tutorial.app.Runner'
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass.set('com.tutorial.app.Runner')
-    standardInput = System.in           // ← important
-    mustRunAfter 'build'
-}
-
-// Also fix the default 'run' task created by the application plugin
-tasks.named('run', JavaExec).configure {
-    standardInput = System.in           // ← important
-    mustRunAfter 'build'
-}
-
-// CI-ish chains (optional)
-tasks.register('install') {
-    group = 'build'
-    description = 'Alias for Maven-like install; depends on build.'
-    dependsOn tasks.named('build')
-}
-tasks.register('ciRunLibrary') {
-    group = 'application'
-    dependsOn 'clean', 'install', 'runLibrary'
-}
-tasks.register('ciRunTutorial') {
-    group = 'application'
-    dependsOn 'clean', 'install', 'runTutorial'
-}
-
-// If you want tutorial by default, use 'runTutorial' here:
-defaultTasks 'clean', 'build', 'runTutorial'
+/**
+ * If you still want your original JavaExec runners,
+ * you can keep them alongside Boot. Uncomment to restore.
+ */
+// tasks.register('runLibrary', JavaExec) {
+//   group = 'application'
+//   description = 'Run com.projects.librarymanagement.app.Runner'
+//   classpath = sourceSets.main.runtimeClasspath
+//   mainClass.set('com.projects.librarymanagement.app.Runner')
+//   standardInput = System.in
+//   mustRunAfter 'build'
+// }
+// tasks.register('runTutorial', JavaExec) {
+//   group = 'application'
+//   description = 'Run com.tutorial.app.Runner'
+//   classpath = sourceSets.main.runtimeClasspath
+//   mainClass.set('com.tutorial.app.Runner')
+//   standardInput = System.in
+//   mustRunAfter 'build'
+// }
+// tasks.named('test').configure { mustRunAfter 'build' }
+// defaultTasks 'clean', 'build' // or 'bootRun' if you prefer

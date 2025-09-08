@@ -1,8 +1,8 @@
 
 
-mvn clean install test verify
+mvn clean install test
 mvn -Denv=staging -Dbrowser=firefox test
-mvn -DskipTests exec:java
+mvn exec:java@run-runner
 
 gradle || ./gradlew test
 gradle || ./gradlew test -Denv=staging -Dbrowser=firefox

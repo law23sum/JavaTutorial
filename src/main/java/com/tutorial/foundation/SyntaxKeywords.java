@@ -183,7 +183,7 @@ public class SyntaxKeywords implements Closeable {
     }
 
     // Demonstrate strictfp on a method (floating-point strictness)
-    public strictfp double sum(double a, double b) { return a + b; }
+    public double sum(double a, double b) { return a + b; }
 
     // --- small utility demos ----------------------
 

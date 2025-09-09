@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.array;
+package com.tutorial.core.structure.array;
 
 public class BinarySearch {
    public static int execute(int[] sortedArray) {

@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.array;
+package com.tutorial.core.structure.array;
 
 import com.library.custom.BasicFunctions;
 

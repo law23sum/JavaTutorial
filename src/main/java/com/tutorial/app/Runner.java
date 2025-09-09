@@ -3,13 +3,13 @@ package com.tutorial.app;
 import com.tutorial.core.datastructure.array.BinarySearch;
 import com.tutorial.core.datastructure.array.InsertionSort;
 import com.tutorial.core.datastructure.array.LinearScan;
-import com.tutorial.oop.packagee.classs.clas.concrete.encapsulate.BaseClass;
-import com.tutorial.oop.packagee.classs.clas.abstractt.inherit.polymorph.Polymorphismm;
-import com.tutorial.oop.packagee.classs.method.Type;  // <-- contains Overload.runDemo()
-import com.tutorial.oop.packagee.classs.clas.concrete.RootClass;
-import com.tutorial.oop.packagee.classs.method.Attribute;
-import com.tutorial.oop.packagee.classs.method.ConditionalsLoopsExceptions;
-import com.tutorial.oop.packagee.classs.type.WrapperClass;
+import com.tutorial.packagee.classs.clas.concrete.encapsulate.BaseClass;
+import com.tutorial.packagee.classs.clas.abstractt.inherit.polymorph.Polymorphismm;
+import com.tutorial.packagee.classs.method.Type;  // <-- contains Overload.runDemo()
+import com.tutorial.packagee.classs.clas.concrete.RootClass;
+import com.tutorial.packagee.classs.method.Attribute;
+import com.tutorial.packagee.classs.method.ConditionalsLoopsExceptions;
+import com.tutorial.packagee.classs.type.WrapperClass;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

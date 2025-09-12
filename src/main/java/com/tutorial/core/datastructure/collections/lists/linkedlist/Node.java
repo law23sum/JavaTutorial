@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.linkedlist;
+package com.tutorial.core.datastructure.collections.lists.linkedlist;
 
 public class Node {
     Node(int dataNode) {

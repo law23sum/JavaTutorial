@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.linkedlist;
+package com.tutorial.core.datastructure.collections.lists.linkedlist;
 
 import java.util.Collections;
 import java.util.LinkedList;

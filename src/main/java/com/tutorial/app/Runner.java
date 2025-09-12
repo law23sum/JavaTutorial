@@ -1,8 +1,8 @@
 package com.tutorial.app;
 
-import com.tutorial.core.structure.array.BinarySearch;
-import com.tutorial.core.structure.array.InsertionSort;
-import com.tutorial.core.structure.array.LinearScan;
+import com.tutorial.core.datastructure.primitivestructure.array.BinarySearch;
+import com.tutorial.core.datastructure.primitivestructure.array.InsertionSort;
+import com.tutorial.core.datastructure.primitivestructure.array.LinearScan;
 import com.tutorial.oop.packagee.classs.clas.concrete.encapsulate.BaseClass;
 import com.tutorial.oop.packagee.classs.clas.abstractt.inherit.polymorph.Polymorphismm;
 import com.tutorial.oop.packagee.classs.method.Type;  // <-- contains Overload.runDemo()

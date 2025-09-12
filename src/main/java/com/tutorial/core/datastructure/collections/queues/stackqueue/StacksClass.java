@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.stackqueue;
+package com.tutorial.core.datastructure.collections.queues.stackqueue;
 
 import java.util.ArrayList;
 import java.util.Stack;

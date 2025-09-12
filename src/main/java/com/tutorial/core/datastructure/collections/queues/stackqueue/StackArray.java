@@ -1,8 +1,8 @@
-package com.tutorial.core.datastructure.stackqueue;
+package com.tutorial.core.datastructure.collections.queues.stackqueue;
 
 import java.util.Stack;
 
-import static com.tutorial.core.datastructure.stackqueue.StacksClass.*;
+import static com.tutorial.core.datastructure.collections.queues.stackqueue.StacksClass.*;
 
 public class StackArray {
     static void stacksArray() {

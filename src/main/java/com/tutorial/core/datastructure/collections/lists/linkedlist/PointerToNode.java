@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.linkedlist;
+package com.tutorial.core.datastructure.collections.lists.linkedlist;
 
 public class PointerToNode {
    public static void headInsertion(int dataNode) {

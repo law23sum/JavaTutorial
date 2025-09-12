@@ -1,7 +1,7 @@
-package com.tutorial.core.datastructure.linkedlist;
+package com.tutorial.core.datastructure.collections.lists.linkedlist;
 
 
-import static com.tutorial.core.datastructure.linkedlist.NodesPointers.*;
+import static com.tutorial.core.datastructure.collections.lists.linkedlist.NodesPointers.*;
 
 public class LinkedList {
     static void singleLinkedList() {

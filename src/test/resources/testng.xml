@@ -12,6 +12,9 @@
         </packages>
         <classes>
             <class name="com.tutorial.testng.tests.AnnotationsTest"/>
+            <class name="com.tutorial.testng.tests.DataProviderTest"/>
+            <class name="com.tutorial.testng.tests.DependenciesTest"/>
+            <class name="com.tutorial.testng.tests.GroupsTest"/>
         </classes>
     </test>
 

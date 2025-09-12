@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.collections.lists.arraylist;
+package com.tutorial.core.datastructure.collections.lists;
 
 import java.util.*;
 

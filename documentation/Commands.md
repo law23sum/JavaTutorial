@@ -1,5 +1,13 @@
 
 
+
+
+
+
+
+
+
+
 mvn clean install test -Denv=local -Dbrowser=chrome
 mvn -Denv=staging -Dbrowser=firefox test
 mvn exec:java@run-runner

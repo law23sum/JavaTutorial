@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.collections.lists;
+package com.tutorial.core.datastructure.collections.lists.linkedlist;
 
 import java.util.*;
 
@@ -21,7 +21,7 @@ import java.util.*;
  *   javac com/tutorial/core/datastructure/collections/lists/linkedlist/LinkedListTour.java && \
  *   java com.tutorial.core.datastructure.collections.lists.linkedlist.LinkedListTour
  */
-public class LinkedLists {
+public class AdvancedLinkedLists {
 
     // ======================================================================
     // A) CUSTOM SINGLY LINKED LIST — teaches pointer dance explicitly

@@ -1,4 +1,4 @@
-package com.tutorial.core.datastructure.collections.lists;
+package com.tutorial.core.datastructure.collections.lists.arraylist;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ import java.util.*;
  *   javac com/tutorial/core/collections/ArrayListTour.java && \
  *   java com.tutorial.core.collections.ArrayListTour
  */
-public class ArrayLists {
+public class AdvancedArrayLists {
 
     // =========================================================================
     // 1) BASICS — Construction, add, get, set, remove, size

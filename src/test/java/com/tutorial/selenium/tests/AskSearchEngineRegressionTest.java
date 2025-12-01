@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import org.openqa.selenium.Dimension;
@@ -24,8 +28,9 @@ public class AskSearchEngineRegressionTest {
     @BeforeClass
     @Parameters({"browser"})
     public void setUp(@Optional("chrome") String browser) {
-        // Normalize input (chrome, firefox, edge)
-        String browserName = browser.trim().toLowerCase();
+        configureWebDriverManagerCache();
+        // Normalize input (chrome, firefox). Default to chrome when the TestNG parameter is missing/blank.
+        String browserName = (browser == null || browser.isBlank()) ? "chrome" : browser.trim().toLowerCase();
 
         switch (browserName) {
             case "firefox" -> {
@@ -58,5 +63,16 @@ public class AskSearchEngineRegressionTest {
         AskSearchEngineResultsPage results = home.search("selenium");
         Assert.assertFalse(results.firstResultTitle().isBlank(), "First result title was blank");
         log.info("Automation Single Test Case Sample: Success");
+    }
+
+    private void configureWebDriverManagerCache() {
+        Path cacheDir = Paths.get("target", "wdm-cache").toAbsolutePath();
+        try {
+            Files.createDirectories(cacheDir);
+        } catch (IOException e) {
+            throw new IllegalStateException("Unable to create WebDriverManager cache directory " + cacheDir, e);
+        }
+        System.setProperty("wdm.cachePath", cacheDir.toString());
+        System.setProperty("wdm.resolutionCachePath", cacheDir.resolve("resolution.properties").toString());
     }
 }

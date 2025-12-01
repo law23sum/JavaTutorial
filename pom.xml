@@ -63,6 +63,20 @@
             <version>5.9.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- JUnit 5 API for Jupiter-based unit tests living in src/test -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Legacy JUnit 4 tests are still present; keep the API around so they compile -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

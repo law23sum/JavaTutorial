@@ -228,19 +228,19 @@ public class DataManager {
     /* ───────────────────────────── 7) CACHE: LRU + TTL (read-through) ───────────────────────────── */
 
     public static final class CacheLayer implements DataSource {
-        private static final class Entry { final Object v; final long exp; Entry(Object v,long exp){this.v=v;this.exp=exp;} }
+        private static final class CacheEntry { final Object v; final long exp; CacheEntry(Object v,long exp){this.v=v;this.exp=exp;} }
         private final DataSource delegate;
         private final long ttlMillis;
         private final int maxEntries;
-        private final Map<String, Entry> cache; // access-ordered for LRU
+        private final Map<String, CacheEntry> cache; // access-ordered for LRU
         private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
         public CacheLayer(DataSource delegate, Duration ttl, int maxEntries) {
             this.delegate = delegate;
             this.ttlMillis = ttl.toMillis();
             this.maxEntries = maxEntries;
-            this.cache = new LinkedHashMap<>(16, 0.75f, true) {
-                @Override protected boolean removeEldestEntry(Map.Entry<String, Entry> eldest) { return size() > CacheLayer.this.maxEntries; }
+            this.cache = new LinkedHashMap<String, CacheEntry>(16, 0.75f, true) {
+                @Override protected boolean removeEldestEntry(Map.Entry<String, CacheEntry> eldest) { return size() > CacheLayer.this.maxEntries; }
             };
         }
 
@@ -248,7 +248,7 @@ public class DataManager {
             long now = System.currentTimeMillis();
             lock.readLock().lock();
             try {
-                Entry e = cache.get(key);
+                CacheEntry e = cache.get(key);
                 if (e != null && (e.exp == 0 || e.exp > now)) return Optional.ofNullable(e.v);
             } finally { lock.readLock().unlock(); }
 
@@ -256,7 +256,7 @@ public class DataManager {
             lock.writeLock().lock();
             try {
                 long exp = (ttlMillis <= 0) ? 0 : now + ttlMillis;
-                cache.put(key, new Entry(fresh.orElse(null), exp));
+                cache.put(key, new CacheEntry(fresh.orElse(null), exp));
             } finally { lock.writeLock().unlock(); }
             return fresh;
         }

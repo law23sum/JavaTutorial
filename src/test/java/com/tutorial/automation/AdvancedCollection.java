@@ -1,4 +1,4 @@
-package com.tutorial.foundation;
+package com.tutorial.automation;
 
 import java.time.Duration;
 import java.time.Instant;

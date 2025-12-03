@@ -1,6 +1,6 @@
 package com.tutorial.foundation;
 
-import java.io.*;
+import java.io.IOException;
 
 /**
  * Java Error Handling — “one-file tour” with explanations.

@@ -7,9 +7,8 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
-import java.util.*;
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

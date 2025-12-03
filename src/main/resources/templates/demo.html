@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Java Tutorial Demo Explorer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 1.5rem;
+            background: #1e293b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+        main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        aside, section {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        li:hover, li.active {
+            background: #334155;
+        }
+        pre {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            min-height: 150px;
+            white-space: pre-wrap;
+        }
+        button {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 999px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .status {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Java Tutorial Main Explorer</h1>
+    <p th:text="'Discovered main classes: ' + ${demoCount}"></p>
+</header>
+<main>
+    <aside>
+        <h2 style="margin-top:0">Entry Points</h2>
+        <p class="status" id="loading-status">Loading demos...</p>
+        <ul id="demo-list"></ul>
+    </aside>
+    <section>
+        <h2 id="demo-title">Select an example</h2>
+        <pre id="pseudo-code">Pseudo code will appear here.</pre>
+        <button id="run-button" disabled>Run Demo</button>
+        <pre id="output">Output will appear after running the demo.</pre>
+    </section>
+</main>
+<script>
+    const list = document.getElementById('demo-list');
+    const title = document.getElementById('demo-title');
+    const pseudo = document.getElementById('pseudo-code');
+    const output = document.getElementById('output');
+    const button = document.getElementById('run-button');
+    const status = document.getElementById('loading-status');
+
+    let demos = [];
+    let selectedId = null;
+
+    async function loadDemos() {
+        try {
+            const response = await fetch('/api/demos');
+            demos = await response.json();
+            renderList();
+            status.textContent = `${demos.length} main classes loaded.`;
+            if (demos.length) {
+                selectDemo(demos[0].id);
+            }
+        } catch (err) {
+            status.textContent = 'Failed to load demos. Check server logs.';
+        }
+    }
+
+    function renderList() {
+        list.innerHTML = '';
+        demos.forEach(demo => {
+            const item = document.createElement('li');
+            item.textContent = demo.name;
+            item.dataset.id = demo.id;
+            if (demo.id === selectedId) {
+                item.classList.add('active');
+            }
+            item.addEventListener('click', () => selectDemo(demo.id));
+            list.appendChild(item);
+        });
+    }
+
+    function selectDemo(id) {
+        const demo = demos.find(d => d.id === id);
+        if (!demo) { return; }
+        selectedId = id;
+        title.textContent = demo.name;
+        pseudo.textContent = demo.pseudoCode.trim();
+        output.textContent = 'Click "Run Demo" to execute.';
+        button.disabled = false;
+        renderList();
+    }
+
+    button.addEventListener('click', async () => {
+        if (!selectedId) { return; }
+        button.disabled = true;
+        button.textContent = 'Running...';
+        output.textContent = 'Capturing output...';
+        try {
+            const response = await fetch(`/api/demos/${selectedId}/run`, { method: 'POST' });
+            if (!response.ok) {
+                throw new Error('Failed to run demo');
+            }
+            const payload = await response.json();
+            output.textContent = payload.output?.trim() || '(No output produced)';
+        } catch (err) {
+            output.textContent = 'Demo execution failed. Check server logs.';
+        } finally {
+            button.disabled = false;
+            button.textContent = 'Run Demo';
+        }
+    });
+
+    loadDemos();
+</script>
+</body>
+</html>

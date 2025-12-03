@@ -3,7 +3,10 @@ package com.tutorial.selenium.tests;
 import com.tutorial.selenium.pages.pageobjectmodel.AskSearchEngineHomePage;
 import com.tutorial.selenium.pages.pageobjectmodel.AskSearchEngineResultsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
-
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AskSearchEngineRegressionTest {
     private static final Logger log = LoggerFactory.getLogger(AskSearchEngineRegressionTest.class);

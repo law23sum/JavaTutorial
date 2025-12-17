@@ -10,6 +10,9 @@
             background-color: #0f172a;
             color: #e2e8f0;
         }
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             min-height: 100vh;
@@ -21,32 +24,103 @@
             background: #1e293b;
             box-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
+        header h1 {
+            margin: 0 0 0.5rem;
+            font-size: clamp(1.5rem, 2vw, 2rem);
+        }
+        header p {
+            margin: 0;
+            color: #94a3b8;
+        }
         main {
             flex: 1;
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: minmax(240px, 340px) 1fr;
             gap: 1rem;
             padding: 1rem;
+        }
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
         }
         aside, section {
             background: #1e293b;
             border-radius: 12px;
             padding: 1rem;
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+        }
+        .list-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .list-header input {
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        .list-header input::placeholder {
+            color: #64748b;
         }
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            flex: 1;
+            overflow-y: auto;
         }
         li {
+            margin-bottom: 0.5rem;
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+        .demo-option {
+            width: 100%;
             padding: 0.75rem;
             border-radius: 8px;
+            border: 1px solid transparent;
+            background: #0f172a;
+            color: inherit;
             cursor: pointer;
-            transition: background 0.2s ease;
+            text-align: left;
+            transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+            font-size: 0.95rem;
         }
-        li:hover, li.active {
+        .demo-option:hover {
+            background: #15213a;
+            transform: translateX(2px);
+            border-color: #334155;
+        }
+        .demo-option.active {
             background: #334155;
+            border-color: #38bdf8;
+            box-shadow: inset 0 0 0 1px rgba(56,189,248,0.4);
+        }
+        .demo-option small {
+            display: block;
+            margin-top: 0.25rem;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        section h2 {
+            margin: 0 0 0.75rem;
+        }
+        .status {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .panel-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         pre {
             background: #0f172a;
@@ -55,116 +129,262 @@
             overflow-x: auto;
             min-height: 150px;
             white-space: pre-wrap;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
-        button {
-            padding: 0.75rem 1.25rem;
+        button.primary {
+            align-self: flex-start;
+            padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 999px;
             background: #38bdf8;
             color: #0f172a;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 1rem;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
         }
-        button:disabled {
+        button.primary:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.35);
+        }
+        button.primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            box-shadow: none;
         }
-        .status {
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.6rem;
+            background: rgba(56,189,248,0.15);
+            border-radius: 999px;
+            color: #bae6fd;
+            font-size: 0.8rem;
+        }
+        .error {
+            color: #fda4af;
             font-size: 0.9rem;
+        }
+        .empty-state {
+            border: 1px dashed #334155;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
             color: #94a3b8;
         }
     </style>
 </head>
 <body>
-<header>
-    <h1>Java Tutorial Main Explorer</h1>
-    <p th:text="'Discovered main classes: ' + ${demoCount}"></p>
-</header>
-<main>
-    <aside>
-        <h2 style="margin-top:0">Entry Points</h2>
-        <p class="status" id="loading-status">Loading demos...</p>
-        <ul id="demo-list"></ul>
-    </aside>
-    <section>
-        <h2 id="demo-title">Select an example</h2>
-        <pre id="pseudo-code">Pseudo code will appear here.</pre>
-        <button id="run-button" disabled>Run Demo</button>
-        <pre id="output">Output will appear after running the demo.</pre>
-    </section>
-</main>
-<script>
-    const list = document.getElementById('demo-list');
-    const title = document.getElementById('demo-title');
-    const pseudo = document.getElementById('pseudo-code');
-    const output = document.getElementById('output');
-    const button = document.getElementById('run-button');
-    const status = document.getElementById('loading-status');
+<div id="root"></div>
+<script th:inline="javascript">
+    window.__demoCount = [[${demoCount}]];
+</script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script type="module">
+    const { useEffect, useMemo, useState } = React;
 
-    let demos = [];
-    let selectedId = null;
-
-    async function loadDemos() {
-        try {
-            const response = await fetch('/api/demos');
-            demos = await response.json();
-            renderList();
-            status.textContent = `${demos.length} main classes loaded.`;
-            if (demos.length) {
-                selectDemo(demos[0].id);
-            }
-        } catch (err) {
-            status.textContent = 'Failed to load demos. Check server logs.';
-        }
-    }
-
-    function renderList() {
-        list.innerHTML = '';
-        demos.forEach(demo => {
-            const item = document.createElement('li');
-            item.textContent = demo.name;
-            item.dataset.id = demo.id;
-            if (demo.id === selectedId) {
-                item.classList.add('active');
-            }
-            item.addEventListener('click', () => selectDemo(demo.id));
-            list.appendChild(item);
+    function App() {
+        const [demos, setDemos] = useState([]);
+        const [filter, setFilter] = useState("");
+        const [selectedId, setSelectedId] = useState(null);
+        const [statusMessage, setStatusMessage] = useState(() => {
+            const count = typeof window.__demoCount === "number" ? window.__demoCount : null;
+            return count != null
+                ? `Server discovered ${count} main class${count === 1 ? "" : "es"} at startup.`
+                : "Loading demos...";
         });
-    }
+        const [output, setOutput] = useState("");
+        const [running, setRunning] = useState(false);
+        const [error, setError] = useState("");
 
-    function selectDemo(id) {
-        const demo = demos.find(d => d.id === id);
-        if (!demo) { return; }
-        selectedId = id;
-        title.textContent = demo.name;
-        pseudo.textContent = demo.pseudoCode.trim();
-        output.textContent = 'Click "Run Demo" to execute.';
-        button.disabled = false;
-        renderList();
-    }
-
-    button.addEventListener('click', async () => {
-        if (!selectedId) { return; }
-        button.disabled = true;
-        button.textContent = 'Running...';
-        output.textContent = 'Capturing output...';
-        try {
-            const response = await fetch(`/api/demos/${selectedId}/run`, { method: 'POST' });
-            if (!response.ok) {
-                throw new Error('Failed to run demo');
+        useEffect(() => {
+            let cancelled = false;
+            async function loadDemos() {
+                try {
+                    setStatusMessage("Loading demos...");
+                    const response = await fetch("/api/demos");
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch demos");
+                    }
+                    const payload = await response.json();
+                    if (cancelled) {
+                        return;
+                    }
+                    setDemos(payload);
+                    if (payload.length === 0) {
+                        setStatusMessage("No runnable main classes were discovered.");
+                        setSelectedId(null);
+                    } else {
+                        setStatusMessage(`${payload.length} main class${payload.length === 1 ? "" : "es"} ready to launch.`);
+                        setSelectedId(payload[0].id);
+                        setOutput("Select a demo to view its details and run it.");
+                    }
+                } catch (ex) {
+                    if (!cancelled) {
+                        console.error(ex);
+                        setStatusMessage("Failed to load demos. Check server logs.");
+                        setError("Unable to reach the demo API.");
+                    }
+                }
             }
-            const payload = await response.json();
-            output.textContent = payload.output?.trim() || '(No output produced)';
-        } catch (err) {
-            output.textContent = 'Demo execution failed. Check server logs.';
-        } finally {
-            button.disabled = false;
-            button.textContent = 'Run Demo';
-        }
-    });
+            loadDemos();
+            return () => {
+                cancelled = true;
+            };
+        }, []);
 
-    loadDemos();
+        const filtered = useMemo(() => {
+            const keyword = filter.trim().toLowerCase();
+            if (!keyword) {
+                return demos;
+            }
+            return demos.filter((demo) => {
+                return demo.name.toLowerCase().includes(keyword) || demo.id.toLowerCase().includes(keyword);
+            });
+        }, [demos, filter]);
+
+        useEffect(() => {
+            if (filtered.length === 0) {
+                if (selectedId !== null) {
+                    setSelectedId(null);
+                }
+                return;
+            }
+            const stillVisible = filtered.some((demo) => demo.id === selectedId);
+            if (!stillVisible) {
+                setSelectedId(filtered[0].id);
+            }
+        }, [filtered, selectedId]);
+
+        const selected = useMemo(() => {
+            if (!selectedId) {
+                return null;
+            }
+            return filtered.find((demo) => demo.id === selectedId) || demos.find((demo) => demo.id === selectedId) || null;
+        }, [filtered, demos, selectedId]);
+
+        async function handleRun() {
+            if (!selected) {
+                return;
+            }
+            setRunning(true);
+            setError("");
+            setOutput("Capturing output...");
+            try {
+                const response = await fetch(`/api/demos/${encodeURIComponent(selected.id)}/run`, {
+                    method: "POST"
+                });
+                if (!response.ok) {
+                    throw new Error("Failed to run demo");
+                }
+                const payload = await response.json();
+                const text = payload.output ? String(payload.output).trim() : "";
+                setOutput(text.length > 0 ? text : "(No output produced)");
+            } catch (ex) {
+                console.error(ex);
+                setError("Demo execution failed. Check server logs.");
+                setOutput("");
+            } finally {
+                setRunning(false);
+            }
+        }
+
+        function renderList() {
+            if (filtered.length === 0) {
+                return (
+                    React.createElement("div", { className: "empty-state" },
+                        "No demos match this filter."
+                    )
+                );
+            }
+            return (
+                React.createElement("ul", null,
+                    filtered.map((demo) =>
+                        React.createElement("li", { key: demo.id },
+                            React.createElement("button", {
+                                    type: "button",
+                                    className: `demo-option${demo.id === selectedId ? " active" : ""}`,
+                                    onClick: () => {
+                                        setSelectedId(demo.id);
+                                        setOutput("Select \"Run Demo\" to execute this main method.");
+                                        setError("");
+                                    }
+                                },
+                                React.createElement("strong", null, demo.name),
+                                React.createElement("small", null, demo.id)
+                            )
+                        )
+                    )
+                )
+            );
+        }
+
+        return (
+            React.createElement("div", { className: "app-shell" },
+                React.createElement("header", null,
+                    React.createElement("span", { className: "tagline" }, "Launcher"),
+                    React.createElement("h1", null, "Java Tutorial Main Explorer"),
+                    React.createElement("p", null, statusMessage)
+                ),
+                React.createElement("main", null,
+                    React.createElement("aside", null,
+                        React.createElement("div", { className: "list-header" },
+                            React.createElement("h2", { style: { margin: 0 } }, "Entry Points"),
+                            React.createElement("input", {
+                                type: "search",
+                                placeholder: "Filter by name or class...",
+                                value: filter,
+                                onChange: (event) => setFilter(event.target.value)
+                            })
+                        ),
+                        React.createElement("p", { className: "status" },
+                            filtered.length === demos.length
+                                ? `${demos.length} total`
+                                : `${filtered.length} of ${demos.length} shown`
+                        ),
+                        renderList()
+                    ),
+                    React.createElement("section", null,
+                        React.createElement("div", { className: "panel-body" },
+                            selected ? (
+                                React.createElement(React.Fragment, null,
+                                    React.createElement("div", null,
+                                        React.createElement("h2", { style: { margin: 0 } }, selected.name),
+                                        React.createElement("p", { className: "status" }, selected.id)
+                                    ),
+                                    React.createElement("div", null,
+                                        React.createElement("h3", { style: { margin: "0 0 0.5rem" } }, "Pseudo code"),
+                                        React.createElement("pre", null, selected.pseudoCode.trim())
+                                    ),
+                                    React.createElement("button", {
+                                        type: "button",
+                                        className: "primary",
+                                        onClick: handleRun,
+                                        disabled: running
+                                    }, running ? "Running..." : "Run Demo"),
+                                    error ? React.createElement("p", { className: "error" }, error) : null,
+                                    React.createElement("div", null,
+                                        React.createElement("h3", { style: { margin: "0 0 0.5rem" } }, "Output"),
+                                        React.createElement("pre", null, output || "Run a demo to see output.")
+                                    )
+                                )
+                            ) : (
+                                React.createElement("div", { className: "empty-state" },
+                                    "Select a demo from the list to inspect its details."
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        );
+    }
+
+    const rootNode = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootNode);
+    root.render(React.createElement(App));
 </script>
 </body>
 </html>

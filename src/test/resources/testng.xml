@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="JavaTutorial automation suite" verbose="1">
+
+    <test name="lifecycle-and-dataprovider">
+        <classes>
+            <class name="com.javatutorial.automation.lifecycle.TestNgLifecycleDemoTest"/>
+            <class name="com.javatutorial.automation.dataproviders.LoginDataProviderTest"/>
+            <class name="com.javatutorial.automation.tests.AssertionCategoryTest"/>
+        </classes>
+    </test>
+
+    <test name="ui">
+        <groups>
+            <run>
+                <include name="ui"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.javatutorial.automation.tests.BankStatementAnalyzerTest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,5 +1,0 @@
-key,value
-base.url,https://api.test.com
-timeout.ms,1200
-retries,3
-debug,true

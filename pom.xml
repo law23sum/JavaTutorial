@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.framework</groupId>
-    <artifactId>JavaTutorial</artifactId>
+    <groupId>com.javatutorial</groupId>
+    <artifactId>java-tutorial</artifactId>
     <version>1.0.0</version>
     <name>JavaTutorial</name>
-    <description>Java project with Spring Boot and Runner entry points</description>
+    <description>Curriculum-style Java fundamentals + Spring Boot + Selenium/TestNG automation framework.</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,10 +20,13 @@
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>4.23.0</selenium.version>
+        <testng.version>7.10.2</testng.version>
+        <wdm.version>5.9.2</wdm.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot app deps -->
+        <!-- Spring Boot demo app -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -46,115 +49,91 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Test deps: drop Boot's JUnit platform, run TestNG only -->
-        <!-- (remove spring-boot-starter-test to avoid JUnit5 auto-wiring) -->
+        <!-- Tests: Spring Boot test (JUnit 5) for unit + MockMvc -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
+        <!-- TestNG for the automation framework suite -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.10.2</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Selenium WebDriver + WebDriverManager -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.23.0</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.9.2</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- JUnit 5 API for Jupiter-based unit tests living in src/test -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.3</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Legacy JUnit 4 tests are still present; keep the API around so they compile -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${wdm.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Spring Boot runner / fat jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.3.3</version>
                 <configuration>
-                    <mainClass>com.apps.Runner</mainClass>
+                    <mainClass>com.javatutorial.JavaTutorialApplication</mainClass>
                 </configuration>
             </plugin>
 
-            <!-- Compiler -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
                 <configuration>
                     <release>${java.version}</release>
                 </configuration>
             </plugin>
 
-            <!-- Surefire: explicitly use the TestNG provider and run all TestNG-style test names -->
+            <!--
+                Surefire runs both JUnit 5 (Spring Boot tests + tutorial unit tests)
+                and TestNG (automation suite). Selenium UI tests are tagged with
+                TestNG group "ui" and excluded by default; opt in with
+                  mvn test -Pui
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <dependencies>
-                    <!-- Force the TestNG provider -->
-                    <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-testng</artifactId>
-                        <version>3.2.5</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
-                    <!-- Pick up common test class name patterns -->
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/*Tests.java</include>
-                        <include>**/*IT.java</include>
-                        <include>**/*ITCase.java</include>
-                        <include>**/*Spec.java</include>
                     </includes>
-
-                    <!-- Pass through CLI -D props -->
-                    <systemPropertyVariables>
-                        <env>${env}</env>
-                        <browser>${browser}</browser>
-                        <testng.listeners>org.testng.reporters.EmailableReporter2</testng.listeners>
-                    </systemPropertyVariables>
-
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-                    <useSystemClassLoader>true</useSystemClassLoader>
-                    <trimStackTrace>true</trimStackTrace>
+                    <properties>
+                        <property>
+                            <name>excludegroups</name>
+                            <value>${testng.excluded.groups}</value>
+                        </property>
+                    </properties>
                 </configuration>
-            </plugin>
-
-            <!-- Exec plugin: both entry points -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.1</version>
-                <executions>
-                    <execution>
-                        <id>run-main</id>
-                        <goals><goal>java</goal></goals>
-                        <configuration>
-                            <mainClass>com.apps.Runner</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation><activeByDefault>true</activeByDefault></activation>
+            <properties>
+                <testng.excluded.groups>ui</testng.excluded.groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>ui</id>
+            <properties>
+                <testng.excluded.groups/>
+            </properties>
+        </profile>
+    </profiles>
 </project>
